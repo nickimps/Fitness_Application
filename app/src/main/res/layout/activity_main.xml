@@ -23,7 +23,7 @@
         android:id="@+id/workoutButton"
         android:layout_below="@id/logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="55dp"
         android:background="@drawable/roundstyle"
         android:src="@drawable/dumbell"
         />
@@ -47,7 +47,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/roundstyle"
-        android:src="@drawable/cbum"
+        android:src="@drawable/calculator"
         />
 
     <ImageButton
