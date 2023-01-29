@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#353131"
+    tools:context=".WorkoutsActivity">
+
+    <TextView
+        android:id="@+id/ChooseWorkoutTextView"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Choose Your Workout"
+        android:textAlignment="center"
+        android:textColor="#FFEB3B"
+        android:textSize="35sp" />
+
+    <Button
+        android:id="@+id/ChestButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignStart="@id/ChooseWorkoutTextView"
+        android:layout_marginTop="100dp"
+        android:text="this is text"
+        android:background="@drawable/chest"
+        android:drawableTop="@drawable/chest"/>
+
+    <Button
+        android:id="@+id/ShouldersButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignEnd="@id/ChooseWorkoutTextView"
+        android:layout_marginTop="100dp" />
+
+    <Button
+        android:id="@+id/BicepsButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignStart="@id/ChooseWorkoutTextView"
+        android:layout_marginTop="250dp" />
+
+    <Button
+        android:id="@+id/TricepsButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignEnd="@id/ChooseWorkoutTextView"
+        android:layout_marginTop="250dp" />
+
+    <Button
+        android:id="@+id/BackButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignStart="@id/ChooseWorkoutTextView"
+        android:layout_marginTop="400dp" />
+
+
+    <Button
+        android:id="@+id/AbsButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignEnd="@id/ChooseWorkoutTextView"
+        android:layout_marginTop="400dp" />
+
+    <Button
+        android:id="@+id/LegsButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignStart="@id/ChooseWorkoutTextView"
+        android:layout_marginTop="550dp" />
+
+    <Button
+        android:id="@+id/GluteButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignEnd="@id/ChooseWorkoutTextView"
+        android:layout_marginTop="550dp" />
+
+
+
+
+
+
+
+</RelativeLayout>
