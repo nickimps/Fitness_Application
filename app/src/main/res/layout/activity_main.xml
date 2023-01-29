@@ -17,48 +17,40 @@
         android:layout_centerHorizontal="true"
         />
 
-    <ImageButton
+    <androidx.cardview.widget.CardView
         android:layout_width="350dp"
         android:layout_height="110dp"
-        android:id="@+id/workoutButton"
         android:layout_below="@id/logo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
-        android:background="@drawable/roundstyle"
-        android:src="@drawable/dumbell"
-        />
+        android:layout_marginTop="35dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        android:layout_centerHorizontal="true">
 
-    <ImageButton
-        android:layout_width="350dp"
-        android:layout_height="110dp"
-        android:id="@+id/personalButton"
-        android:layout_below="@id/workoutButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/roundstyle"
-        android:src="@drawable/cbum"
-        />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/dumbell"
+            android:clickable="true"
+            android:id="@+id/workoutImage"
+            android:scaleType="center"/>
 
-    <ImageButton
-        android:layout_width="350dp"
-        android:layout_height="110dp"
-        android:id="@+id/calorieButton"
-        android:layout_below="@id/personalButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/roundstyle"
-        android:src="@drawable/calculator"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Shitty mcfitty"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="35dp" />
+    </androidx.cardview.widget.CardView>
 
-    <ImageButton
-        android:layout_width="350dp"
-        android:layout_height="110dp"
-        android:id="@+id/weightButton"
-        android:layout_below="@id/calorieButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/roundstyle"
-        android:src="@drawable/scale"
-        />
+
 
 </android.widget.RelativeLayout>
