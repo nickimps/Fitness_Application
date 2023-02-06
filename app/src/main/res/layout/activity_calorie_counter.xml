@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#353131"
+    android:padding="15dp"
     tools:context=".CalorieCounterActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/calCounterHeaderTextView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAlignment="gravity"
+        android:elevation="10dp"
+        android:text="Calorie Counter"
+        android:fontFamily="@font/dm_sans"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowRadius="15"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:textColor="@color/text_yellow"
+        android:textSize="35sp"
+        android:background="@drawable/header_banner"/>
+
+</RelativeLayout>

@@ -7,6 +7,6 @@
         android:right="2dp"
         android:bottom="2dp" />
     <corners android:radius="5dp" />
-    <solid android:color="@color/background_grey" />
+    <solid android:color="@color/background_dark_grey" />
 
 </shape>
