@@ -5,83 +5,188 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#353131"
+    android:padding="15dp"
     tools:context=".WorkoutsActivity">
 
     <TextView
-        android:id="@+id/ChooseWorkoutTextView"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="Choose Your Workout"
-        android:textAlignment="center"
-        android:textColor="#FFEB3B"
-        android:textSize="35sp" />
+        android:id="@+id/chooseWorkoutHeaderTextView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAlignment="gravity"
+        android:elevation="10dp"
+        android:text="@string/chooseWorkouts"
+        android:fontFamily="@font/dm_sans"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowRadius="15"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:textColor="@color/text_yellow"
+        android:textSize="35sp"
+        android:background="@drawable/header_banner"/>
 
-    <Button
-        android:id="@+id/ChestButton"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignStart="@id/ChooseWorkoutTextView"
-        android:layout_marginTop="100dp"
-        android:text="this is text"
-        android:background="@drawable/chest"
-        android:drawableTop="@drawable/chest"/>
+    <!-- Chest Card View  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/chestCardView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_margin="20dp"
+        android:layout_below="@id/chooseWorkoutHeaderTextView"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:elevation="10dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true">
 
-    <Button
-        android:id="@+id/ShouldersButton"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignEnd="@id/ChooseWorkoutTextView"
-        android:layout_marginTop="100dp" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/chest"
+            android:id="@+id/calorieCounterImage"
+            android:scaleType="centerCrop"/>
 
-    <Button
-        android:id="@+id/BicepsButton"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignStart="@id/ChooseWorkoutTextView"
-        android:layout_marginTop="250dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Chest"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="gravity"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="35sp" />
 
-    <Button
-        android:id="@+id/TricepsButton"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignEnd="@id/ChooseWorkoutTextView"
-        android:layout_marginTop="250dp" />
+    </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/BackButton"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignStart="@id/ChooseWorkoutTextView"
-        android:layout_marginTop="400dp" />
+    <!-- Shoulders Card View  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/shouldersCardView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/chooseWorkoutHeaderTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:elevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true">
 
+    </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/AbsButton"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignEnd="@id/ChooseWorkoutTextView"
-        android:layout_marginTop="400dp" />
+    <!-- Biceps Card View  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bicepsCardView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_margin="20dp"
+        android:layout_below="@id/chestCardView"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:elevation="10dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true">
 
-    <Button
-        android:id="@+id/LegsButton"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignStart="@id/ChooseWorkoutTextView"
-        android:layout_marginTop="550dp" />
+    </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/GluteButton"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignEnd="@id/ChooseWorkoutTextView"
-        android:layout_marginTop="550dp" />
+    <!-- Triceps Card View  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tricepsCardView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/chestCardView"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:elevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true">
 
+    </androidx.cardview.widget.CardView>
 
+    <!-- Back Card View  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/backCardView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_margin="20dp"
+        android:layout_below="@id/tricepsCardView"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:elevation="10dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true">
 
+    </androidx.cardview.widget.CardView>
 
+    <!-- Abs Card View  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/absCardView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/tricepsCardView"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:elevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true">
 
+    </androidx.cardview.widget.CardView>
+
+    <!-- Legs Card View  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/legsCardView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_margin="20dp"
+        android:layout_below="@id/backCardView"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:elevation="10dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true">
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Bum Card View  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/BumCardView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/backCardView"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:elevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true">
+
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>

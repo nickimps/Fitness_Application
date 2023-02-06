@@ -4,4 +4,5 @@
     <string name="calorie_counter">Calorie Counter</string>
     <string name="personal_workout">Personal Workout</string>
     <string name="workouts">Workouts</string>
+    <string name="chooseWorkouts">Choose Workout</string>
 </resources>
