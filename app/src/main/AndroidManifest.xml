@@ -28,6 +28,12 @@
             android:exported="false" />
         <activity
             android:name=".ChooseWorkoutsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WorkoutsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,12 +41,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".WorkoutsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"/>
 
         <meta-data
             android:name="preloaded_fonts"
