@@ -5,6 +5,7 @@
     <string name="personal_workout">Personal Workout</string>
     <string name="workouts">Workouts</string>
     <string name="chooseWorkouts">Choose Workout</string>
+    <string name="workout_type">Workout Type</string>
     <string name="totalCals">Total Calories: xxxx</string>
     <string name="totalProtein">Total Protein: xxxx</string>
     <string name="totalCarbs">Total Carbs: xxxx</string>

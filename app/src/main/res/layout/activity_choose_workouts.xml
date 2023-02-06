@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#353131"
+    android:background="@color/background_grey"
     android:padding="15dp"
     tools:context=".ChooseWorkoutsActivity">
 
@@ -15,7 +15,7 @@
         android:gravity="center_vertical|center_horizontal"
         android:textAlignment="gravity"
         android:elevation="10dp"
-        android:text="Workout Type"
+        android:text="@string/workout_type"
         android:fontFamily="@font/dm_sans"
         android:textStyle="bold"
         android:shadowColor="@color/black"
@@ -25,5 +25,15 @@
         android:textColor="@color/text_yellow"
         android:textSize="35sp"
         android:background="@drawable/header_banner"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/workoutTypeRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/workoutTypeHeaderTextView"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
 
 </RelativeLayout>

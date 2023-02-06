@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/workout_type_card"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    app:cardBackgroundColor="@color/background_grey">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/background_light_grey"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardUseCompatPadding="false">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/workout_name_card"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:textAlignment="gravity"
+                android:text="Workout Name"
+                android:fontFamily="@font/dm_sans"
+                android:textSize="25sp"
+                android:textColor="@color/text_yellow"/>
+
+            <TextView
+                android:id="@+id/infoButtonView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/info_button"
+                android:fontFamily="serif"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="i"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_yellow"
+                android:textSize="35sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
