@@ -5,4 +5,11 @@
     <string name="personal_workout">Personal Workout</string>
     <string name="workouts">Workouts</string>
     <string name="chooseWorkouts">Choose Workout</string>
+    <string name="totalCals">Total Calories: xxxx</string>
+    <string name="totalProtein">Total Protein: xxxx</string>
+    <string name="totalCarbs">Total Carbs: xxxx</string>
+    <string name="totalFats">Total Fats: xxxx</string>
+    <string name="calsRemaining">Calories Remaining: xxxx</string>
+    <string name="recordMeal">Record Your Meal</string>
+    <string name="update_parameters">Update Parameters</string>
 </resources>

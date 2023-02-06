@@ -26,4 +26,187 @@
         android:textSize="35sp"
         android:background="@drawable/header_banner"/>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/totalCalsCardView"
+        android:layout_width="350dp"
+        android:layout_height="400dp"
+        android:layout_below="@id/calCounterHeaderTextView"
+        android:layout_marginTop="50dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardBackgroundColor="@color/background_grey"
+        android:layout_centerHorizontal="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/totalCalTextView"
+                android:text="@string/totalCals"
+                android:fontFamily="@font/dm_sans"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:shadowColor="@color/black"
+                android:paddingTop="20dp"
+                android:shadowRadius="15"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:textColor="@color/text_yellow"
+                android:textSize="35sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/totalProteinTextView"
+                android:layout_below="@id/totalCalTextView"
+                android:paddingTop="40dp"
+                android:paddingStart="10dp"
+                android:text="@string/totalProtein"
+                android:fontFamily="@font/dm_sans"
+                android:textStyle="bold"
+                android:shadowColor="@color/black"
+                android:shadowRadius="15"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:textColor="@color/text_yellow"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/totalCarbsTextView"
+                android:layout_below="@id/totalProteinTextView"
+                android:text="@string/totalCarbs"
+                android:fontFamily="@font/dm_sans"
+                android:paddingTop="40dp"
+                android:paddingStart="10dp"
+                android:textStyle="bold"
+                android:shadowColor="@color/black"
+                android:shadowRadius="15"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:textColor="@color/text_yellow"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/totalFatsTextView"
+                android:layout_below="@id/totalCarbsTextView"
+                android:paddingTop="40dp"
+                android:paddingStart="10dp"
+                android:text="@string/totalFats"
+                android:fontFamily="@font/dm_sans"
+                android:textStyle="bold"
+                android:shadowColor="@color/black"
+                android:shadowRadius="15"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:textColor="@color/text_yellow"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/calsRemainTextView"
+                android:layout_below="@id/totalFatsTextView"
+                android:text="@string/calsRemaining"
+                android:paddingTop="40dp"
+                android:paddingStart="10dp"
+                android:fontFamily="@font/dm_sans"
+                android:textStyle="bold"
+                android:shadowColor="@color/black"
+                android:shadowRadius="15"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:textColor="@color/text_yellow"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/recordMealCardView"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/totalCalsCardView"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardBackgroundColor="@color/background_grey"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/record_meal_image"
+            android:id="@+id/recordMealImage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/recordMeal"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="25sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/updateParamsCardView"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/recordMealCardView"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardBackgroundColor="@color/background_grey"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/update_parameters_image"
+            android:id="@+id/updateParamsImageView"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/update_parameters"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="25sp" />
+    </androidx.cardview.widget.CardView>
+
 </RelativeLayout>
