@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Fitness Application</string>
+    <string name="record_weight">Record Weight</string>
+    <string name="calorie_counter">Calorie Counter</string>
+    <string name="personal_workout">Personal Workout</string>
+    <string name="workouts">Workouts</string>
 </resources>

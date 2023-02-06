@@ -17,11 +17,15 @@
         android:layout_centerHorizontal="true"
         />
 
+    <!--  Workouts Card View  -->
     <androidx.cardview.widget.CardView
+        android:id="@+id/workoutsCardView"
         android:layout_width="350dp"
         android:layout_height="110dp"
         android:layout_below="@id/logo"
         android:layout_marginTop="35dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardElevation="10dp"
         app:cardCornerRadius="15dp"
         app:cardMaxElevation="10dp"
@@ -32,15 +36,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/dumbell"
-            android:clickable="true"
             android:id="@+id/workoutImage"
-            android:scaleType="center"/>
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Shitty mcfitty"
+            android:text="@string/workouts"
             android:fontFamily="@font/dm_sans"
             android:textStyle="bold"
             android:shadowColor="@color/black"
@@ -48,9 +51,119 @@
             android:shadowDx="5"
             android:shadowDy="5"
             android:textColor="@color/text_yellow"
-            android:textSize="35dp" />
+            android:textSize="35sp" />
     </androidx.cardview.widget.CardView>
 
 
+    <!--  Personal Workout Card View  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/customWorkoutCardView"
+        android:layout_width="350dp"
+        android:layout_height="110dp"
+        android:layout_below="@id/workoutsCardView"
+        android:layout_marginTop="35dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/cbum"
+            android:id="@+id/customWorkoutImage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/personal_workout"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="35sp" />
+    </androidx.cardview.widget.CardView>
+
+    <!--  Calorie Counter Card View  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/calorieCounterCardView"
+        android:layout_width="350dp"
+        android:layout_height="110dp"
+        android:layout_below="@id/customWorkoutCardView"
+        android:layout_marginTop="35dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/calculator"
+            android:id="@+id/calorieCounterImage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/calorie_counter"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="35sp" />
+    </androidx.cardview.widget.CardView>
+
+    <!--  Record Weight Card View  -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/recordWeightCardView"
+        android:layout_width="350dp"
+        android:layout_height="110dp"
+        android:layout_below="@id/calorieCounterCardView"
+        android:layout_marginTop="35dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/scale"
+            android:id="@+id/recordWeightImage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/record_weight"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="35sp" />
+    </androidx.cardview.widget.CardView>
 
 </android.widget.RelativeLayout>
