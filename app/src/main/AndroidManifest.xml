@@ -22,12 +22,6 @@
             android:exported="false" />
         <activity
             android:name=".CreateWorkoutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CalorieCounterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ChooseWorkoutsActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +29,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".CalorieCounterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseWorkoutsActivity"
+            android:exported="false" />
         <activity
             android:name=".WorkoutsActivity"
             android:exported="false" />

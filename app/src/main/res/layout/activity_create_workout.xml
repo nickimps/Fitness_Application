@@ -26,12 +26,54 @@
         android:textSize="35sp"
         android:background="@drawable/header_banner"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chosenWorkoutsRecyclerView"
+    <TextView
+        android:id="@+id/chosenLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/createWorkoutHeaderTextView"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="25dp"
+        android:textAlignment="textStart"
+        android:text="@string/selected_exercises"
+        android:fontFamily="@font/dm_sans"
+        android:shadowColor="@color/black"
+        android:shadowRadius="15"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:textColor="@color/text_yellow"
+        android:textSize="25sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chosenWorkoutsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@id/chosenLabel"
+        android:layout_marginHorizontal="25dp"
+        android:orientation="vertical"
+        android:background="@drawable/header_banner"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <TextView
+        android:id="@+id/exerciseLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chosenWorkoutsRecyclerView"
+        android:layout_marginTop="15dp"
+        android:textAlignment="textStart"
+        android:text="@string/choose_an_exercise"
+        android:fontFamily="@font/dm_sans"
+        android:shadowColor="@color/black"
+        android:shadowRadius="15"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:textColor="@color/text_yellow"
+        android:textSize="25sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/exercisesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/exerciseLabel"
         android:orientation="vertical"
         android:background="@drawable/header_banner"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
