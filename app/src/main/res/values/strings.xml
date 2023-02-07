@@ -13,4 +13,6 @@
     <string name="calsRemaining">Calories Remaining: xxxx</string>
     <string name="recordMeal">Record Your Meal</string>
     <string name="update_parameters">Update Parameters</string>
+    <string name="workout_name">Workout Name</string>
+    <string name="i">i</string>
 </resources>

@@ -53,7 +53,14 @@ public class ChooseWorkoutsActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            // do things here
+            //do click things
+//            int selectedItemPosition = recyclerViewWorkoutType.getChildAdapterPosition(view);
+//            RecyclerView.ViewHolder viewHolder = recyclerViewWorkoutType.findViewHolderForAdapterPosition(selectedItemPosition);
+//
+//            TextView textViewWorkoutType = (TextView) viewHolder.itemView.findViewById(R.id.workout_name_card);
+//            String selectedWorkout = (String) textViewWorkoutType.getText();
+//
+//            System.out.println("selectedWorkout");
         }
     }
 }
