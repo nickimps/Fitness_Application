@@ -16,4 +16,5 @@
     <string name="workout_name">Workout Name</string>
     <string name="i">i</string>
     <string name="create_workout">Create Workout</string>
+    <string name="todaysDate">Today\'s Date</string>
 </resources>
