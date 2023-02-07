@@ -1,9 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecordWeightActivity">
+    tools:context=".RecordWeightActivity"
+    android:background="@color/background_grey"
+    android:padding="15dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/weightHistoryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAlignment="gravity"
+        android:elevation="10dp"
+        android:text="Weight History"
+        android:fontFamily="@font/dm_sans"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowRadius="15"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:textColor="@color/text_yellow"
+        android:textSize="35sp"
+        android:background="@drawable/header_banner"/>
+
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/weightGraph"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/weightHistoryTextView"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dateTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/weightGraph"
+        app:errorEnabled="true"
+        android:layout_marginTop="20dp"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dateTextInputField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans"
+            android:inputType="textPersonName"
+            android:hint="Date for new record"
+            android:gravity="center_horizontal"
+            android:background="@color/background_light_grey"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/weightOnDateTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/dateTextLayout"
+        android:layout_marginTop="10dp"
+        app:errorEnabled="true"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/weightOnDateTextInputField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans"
+            android:inputType="textPersonName"
+            android:hint="Weight on that date"
+            android:gravity="center_horizontal"
+            android:background="@color/background_light_grey"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/recordWeightButton"
+        android:layout_below="@id/weightOnDateTextLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Record Weight"
+        android:textStyle="bold"
+        android:backgroundTint="@color/text_yellow"
+        android:textSize="20sp"
+        android:textColor="@color/background_grey"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/currentHeightTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/recordWeightButton"
+        android:layout_marginTop="30dp"
+        app:errorEnabled="true"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/currentHeightTextInputField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans"
+            android:inputType="textPersonName"
+            android:hint="Current Height"
+            android:gravity="center_horizontal"
+            android:background="@color/background_light_grey"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/goalWeightTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/currentHeightTextLayout"
+        android:layout_marginTop="10dp"
+        app:errorEnabled="true"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/goalWeightTextInputField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans"
+            android:inputType="textPersonName"
+            android:hint="Goal Weight"
+            android:gravity="center_horizontal"
+            android:background="@color/background_light_grey"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/currentBMITextView"
+        android:layout_marginTop="15dp"
+        android:text="Current BMI: xxxx"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:layout_below="@id/goalWeightTextInputLayout"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/text_yellow"
+        android:background="@color/background_dark_grey"
+        />
+
+</RelativeLayout>
