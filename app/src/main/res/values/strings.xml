@@ -15,4 +15,5 @@
     <string name="update_parameters">Update Parameters</string>
     <string name="workout_name">Workout Name</string>
     <string name="i">i</string>
+    <string name="create_workout">Create Workout</string>
 </resources>
