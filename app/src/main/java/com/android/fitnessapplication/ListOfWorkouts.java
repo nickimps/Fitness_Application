@@ -16,6 +16,15 @@ public class ListOfWorkouts {
             "Wing Flappers",
             "Wing Flappers",
             "Unicorn Flying Jacks",
-            "Gigantic Jumps",
+            "Gigantic Jumps"
+    };
+
+    static String[] exercises = {
+            "Push Down",
+            "Push Up",
+            "Pull Down",
+            "Push Up",
+            "Crab Walk",
+            "Plank"
     };
 }

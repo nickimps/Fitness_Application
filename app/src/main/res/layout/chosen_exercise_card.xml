@@ -11,8 +11,6 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
         android:layout_margin="10dp"
         app:cardBackgroundColor="@color/background_light_grey"
         app:cardCornerRadius="15dp"
