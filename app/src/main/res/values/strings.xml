@@ -27,4 +27,8 @@
     <string name="pause">PAUSE</string>
     <string name="blank_set_label">0/X</string>
     <string name="log_set">Log Set</string>
+    <string name="exercise_name_here">Exercise Name Here</string>
+    <string name="video_placeholder">Video Embedded Here</string>
+    <string name="repsNamePlaceholder">REPS</string>
+    <string name="repsNumPlaceholder">X-XX</string>
 </resources>

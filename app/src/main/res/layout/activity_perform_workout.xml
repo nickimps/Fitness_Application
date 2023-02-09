@@ -70,7 +70,7 @@
                     android:backgroundTint="@color/start_green"
                     android:textColor="@color/background_dark_grey"
                     android:fontFamily="@font/dm_sans"
-                    android:textSize="24sp"
+                    android:textSize="30sp"
                     android:textStyle="italic|bold"
                     android:text="@string/start"/>
 
@@ -88,7 +88,7 @@
                     android:backgroundTint="@color/text_yellow"
                     android:textColor="@color/background_dark_grey"
                     android:fontFamily="@font/dm_sans"
-                    android:textSize="24sp"
+                    android:textSize="30sp"
                     android:textStyle="italic|bold"
                     android:text="@string/pause"/>
 
