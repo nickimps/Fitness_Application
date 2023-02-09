@@ -19,6 +19,21 @@ public class ListOfWorkouts {
             "Gigantic Jumps"
     };
 
+    static String[][] listOfWorkouts = {
+            { "chest_workout_1",    //workout name
+                "chest",    // filter
+                "4",        //# sets
+                "Barbell Bench Press", "5-7", //this point down are the exercise name and reps
+                "Dumbbell Bench Press", "4",
+                "Push-Up", "15-20" },
+            { "chest_workout_2",
+                "chest",
+                "4",
+                "Chest Fly", "10",
+                "Dumbbell Bench Press", "4",
+                "Push-Up", "15" }
+    };
+
     static String[] exercises = {
             "Push Down",
             "Push Up",

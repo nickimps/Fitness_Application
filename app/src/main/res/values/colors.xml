@@ -11,4 +11,8 @@
     <color name="background_dark_grey">#1E1E1E</color>
     <color name="background_light_grey">#575757</color>
     <color name="text_yellow">#FFF4D800</color>
+    <color name="start_green">#33b249</color>
+    <color name="stop_red">#EE4B2B</color>
+    <color name="disabled_grey">#D3D3D3</color>
+    <color name="disabled_darker_grey">#a8a8a8</color>
 </resources>

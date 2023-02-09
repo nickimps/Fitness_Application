@@ -12,6 +12,15 @@
         android:theme="@style/Theme.FitnessApplication"
         tools:targetApi="31">
         <activity
+            android:name=".PerformWorkoutActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".UpdateParametersActivity"
             android:exported="false" />
         <activity
@@ -22,14 +31,7 @@
             android:exported="false" />
         <activity
             android:name=".CreateWorkoutActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+            android:exported="false" />
         <activity
             android:name=".CalorieCounterActivity"
             android:exported="false" />

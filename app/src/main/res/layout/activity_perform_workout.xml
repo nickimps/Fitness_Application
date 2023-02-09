@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey"
+    android:padding="15dp"
+    tools:context=".PerformWorkoutActivity">
+
+    <TextView
+        android:id="@+id/workoutNameHeaderTextView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAlignment="gravity"
+        android:elevation="10dp"
+        android:text="@string/workout_name_here"
+        android:fontFamily="@font/dm_sans"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowRadius="15"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:textColor="@color/text_yellow"
+        android:textSize="35sp"
+        android:background="@drawable/header_banner"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/startClockCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/workoutNameHeaderTextView"
+        android:layout_marginTop="15dp"
+        app:cardBackgroundColor="@color/background_dark_grey"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardUseCompatPadding="false">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/timeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/blank_time"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_yellow"
+                android:textStyle="bold|italic"
+                android:textSize="50sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/timeTextView">
+
+                <Button
+                    android:id="@+id/startStopButton"
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/start_green"
+                    android:textColor="@color/background_dark_grey"
+                    android:fontFamily="@font/dm_sans"
+                    android:textSize="24sp"
+                    android:textStyle="italic|bold"
+                    android:text="@string/start"/>
+
+<!--                default visiblity gone! set in .java-->
+                <View
+                    android:id="@+id/buttonGapView"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"/>
+
+                <Button
+                    android:id="@+id/pauseButton"
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/text_yellow"
+                    android:textColor="@color/background_dark_grey"
+                    android:fontFamily="@font/dm_sans"
+                    android:textSize="24sp"
+                    android:textStyle="italic|bold"
+                    android:text="@string/pause"/>
+
+                <View
+                    android:id="@+id/buttonGapEndView"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/logSetCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startClockCardView"
+        android:layout_marginTop="10dp"
+        app:cardBackgroundColor="@color/background_dark_grey"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardUseCompatPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timeTextView"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/setsRemainingTextView"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/dm_sans"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/blank_set_label"
+                android:textAlignment="gravity"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="50sp" />
+            <View
+                android:id="@+id/buttonGapView2"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:id="@+id/logButton"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:layout_height="80dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/background_dark_grey"
+                android:fontFamily="@font/dm_sans"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="@string/log_set"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/workoutTypeRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logSetCardView"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+</RelativeLayout>

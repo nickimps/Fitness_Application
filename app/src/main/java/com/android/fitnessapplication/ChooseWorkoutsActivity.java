@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,6 +27,8 @@ public class ChooseWorkoutsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_workouts);
 
+        //change workoutTypeHeaderTextView for passed in intent
+
         myOnClickListener = new MyOnClickListener(this);
 
         recyclerViewWorkoutType = (RecyclerView) findViewById(R.id.workoutTypeRecyclerView);
@@ -36,8 +39,8 @@ public class ChooseWorkoutsActivity extends AppCompatActivity {
         recyclerViewWorkoutType.setItemAnimator(new DefaultItemAnimator());
 
         workouts_list = new ArrayList<>();
-        for (int i = 0; i < ListOfWorkouts.workouts.length; i++)
-            workouts_list.add(new WorkoutTypeObject(ListOfWorkouts.workouts[i]));
+        for (int i = 0; i < ListOfWorkouts.listOfWorkouts.length; i++)
+            workouts_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[i][0]));
 
         adapter = new RecyclerAdapterWorkoutType(workouts_list);
         recyclerViewWorkoutType.setAdapter(adapter);
@@ -54,13 +57,13 @@ public class ChooseWorkoutsActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             //do click things
-//            int selectedItemPosition = recyclerViewWorkoutType.getChildAdapterPosition(view);
-//            RecyclerView.ViewHolder viewHolder = recyclerViewWorkoutType.findViewHolderForAdapterPosition(selectedItemPosition);
-//
-//            TextView textViewWorkoutType = (TextView) viewHolder.itemView.findViewById(R.id.workout_name_card);
-//            String selectedWorkout = (String) textViewWorkoutType.getText();
-//
-//            System.out.println("selectedWorkout");
+            int selectedItemPosition = recyclerViewWorkoutType.getChildAdapterPosition(view);
+            RecyclerView.ViewHolder viewHolder = recyclerViewWorkoutType.findViewHolderForAdapterPosition(selectedItemPosition);
+
+            TextView textViewWorkoutType = (TextView) viewHolder.itemView.findViewById(R.id.workout_name_card);
+            String selectedWorkout = (String) textViewWorkoutType.getText();
+
+            System.out.println(selectedWorkout);
         }
     }
 }
