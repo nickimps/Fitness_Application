@@ -76,6 +76,9 @@ public class PerformWorkoutActivity extends AppCompatActivity {
         });
 
         // When pause button is pressed
+        pauseButton.setOnClickListener(view -> {
+            // Stop timer here
+        });
 
         // When the log button is pressed
         logButton.setOnClickListener(view -> {
