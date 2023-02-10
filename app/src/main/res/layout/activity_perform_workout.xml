@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/background_grey"
     android:padding="15dp"
+    app:cardElevation="10dp"
+    app:cardMaxElevation="12dp"
     tools:context=".PerformWorkoutActivity">
 
     <TextView
@@ -34,8 +36,6 @@
         android:layout_marginTop="15dp"
         app:cardBackgroundColor="@color/background_dark_grey"
         app:cardCornerRadius="15dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="12dp"
         app:cardUseCompatPadding="false">
 
         <RelativeLayout
@@ -111,8 +111,6 @@
         android:layout_marginTop="10dp"
         app:cardBackgroundColor="@color/background_dark_grey"
         app:cardCornerRadius="15dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="12dp"
         app:cardUseCompatPadding="false">
 
         <LinearLayout
@@ -126,7 +124,7 @@
                 android:layout_width="fill_parent"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/dm_sans"
+                android:fontFamily="@font/dm_sans_medium"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="@string/blank_set_label"
                 android:textAlignment="gravity"
@@ -156,7 +154,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/workoutTypeRecyclerView"
+        android:id="@+id/exercisePerformRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/logSetCardView"
