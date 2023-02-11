@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,6 +31,10 @@ public class PerformWorkoutActivity extends AppCompatActivity {
     Button pauseButton, startStopButton, logButton;
     TextView setsRemainingTextView;
 
+    long chronoTimeWhenPaused;
+    Boolean timerActive;
+    Chronometer timerChronometer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +45,10 @@ public class PerformWorkoutActivity extends AppCompatActivity {
         pauseButton = findViewById(R.id.pauseButton);
         logButton = findViewById(R.id.logButton);
         setsRemainingTextView = findViewById(R.id.setsRemainingTextView);
+
+        chronoTimeWhenPaused = 0;
+        timerActive = false;
+        timerChronometer = findViewById(R.id.timerChronometer);
 
         //Get number of sets to show
         max_num_of_sets = Integer.parseInt(ListOfWorkouts.listOfWorkouts[0][2]);
@@ -56,9 +66,11 @@ public class PerformWorkoutActivity extends AppCompatActivity {
                 startStopButton.setBackgroundColor(ContextCompat.getColor(this, R.color.stop_red));
                 startStopButton.setText(getResources().getString(R.string.stop));
 
-                /*
-                    Need to start the timer here and show that in timeTextView and show pause button
-                 */
+                timerChronometer.setBase(SystemClock.elapsedRealtime() + chronoTimeWhenPaused);
+                timerChronometer.start();
+                timerActive = true;
+
+
                 buttonGapView.setVisibility(View.VISIBLE);
                 pauseButton.setVisibility(View.VISIBLE);
             } else {
@@ -69,6 +81,11 @@ public class PerformWorkoutActivity extends AppCompatActivity {
                 buttonGapView.setVisibility(View.GONE);
                 pauseButton.setVisibility(View.GONE);
 
+                timerChronometer.setBase(SystemClock.elapsedRealtime());
+                chronoTimeWhenPaused = 0;
+                timerChronometer.stop();
+                timerActive = false;
+
                 // Reset the set number
                 current_set_num = 0;
                 setsRemainingTextView.setText(String.format(Locale.getDefault(),"%d/%d", current_set_num, max_num_of_sets));
@@ -77,7 +94,16 @@ public class PerformWorkoutActivity extends AppCompatActivity {
 
         // When pause button is pressed
         pauseButton.setOnClickListener(view -> {
-            // Stop timer here
+            if (timerActive) {
+                chronoTimeWhenPaused = timerChronometer.getBase() - SystemClock.elapsedRealtime();
+                timerChronometer.stop();
+                timerActive = false;
+            }
+            else {
+                timerChronometer.setBase(SystemClock.elapsedRealtime() + chronoTimeWhenPaused);
+                timerChronometer.start();
+                timerActive = true;
+            }
         });
 
         // When the log button is pressed

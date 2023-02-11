@@ -54,6 +54,18 @@
                 android:textAlignment="gravity"
                 android:textColor="@color/text_yellow"
                 android:textStyle="bold|italic"
+                android:textSize="50sp"
+                android:visibility="invisible"/>
+
+            <Chronometer
+                android:id="@+id/timerChronometer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans"
+                android:gravity="center_vertical|center_horizontal"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_yellow"
+                android:textStyle="bold|italic"
                 android:textSize="50sp" />
 
             <LinearLayout
