@@ -81,7 +81,7 @@ public class WorkoutsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Go to register screen on click
                 Intent intent = new Intent(WorkoutsActivity.this, ChooseWorkoutsActivity.class);
-                intent.putExtra("workout_type", "Abs");
+                intent.putExtra("workout_type", "Abs & Obliques");
                 startActivity((intent));
             }
         });
