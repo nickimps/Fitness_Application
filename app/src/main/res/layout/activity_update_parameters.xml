@@ -7,5 +7,107 @@
     android:background="@color/background_grey"
     android:padding="15dp"
     tools:context=".UpdateParametersActivity">
+    <TextView
+        android:id="@+id/UpdateParamsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAlignment="gravity"
+        android:elevation="10dp"
+        android:text="Update Parameters"
+        android:fontFamily="@font/dm_sans"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowRadius="15"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:textColor="@color/text_yellow"
+        android:textSize="35sp"
+        android:background="@drawable/header_banner"/>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/DailyCalorieTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/UpdateParamsTextView"
+        app:errorEnabled="true"
+        android:layout_marginTop="20dp"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/DailyCalorieTextInputField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans"
+            android:inputType="textPersonName"
+            android:hint="Daily Calorie Allowance"
+            android:gravity="center_horizontal"
+            android:background="@color/background_light_grey"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/heightTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/DailyCalorieTextLayout"
+        android:layout_marginTop="20dp"
+        app:errorEnabled="true"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/heightTextInputField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans"
+            android:inputType="textPersonName"
+            android:hint="Current Height"
+            android:gravity="center_horizontal"
+            android:background="@color/background_light_grey"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/goalTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/heightTextLayout"
+        android:layout_marginTop="20dp"
+        app:errorEnabled="true"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/goalTextInputField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans"
+            android:inputType="textPersonName"
+            android:hint="Goal Weight"
+            android:gravity="center_horizontal"
+            android:background="@color/background_light_grey"
+            android:textSize="20sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/recordYourMealButton"
+        android:layout_below="@id/goalTextLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Update"
+        android:textStyle="bold"
+        android:backgroundTint="@color/text_yellow"
+        android:textSize="20sp"
+        android:textColor="@color/background_grey"
+        />
 </RelativeLayout>
