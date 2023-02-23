@@ -61,7 +61,7 @@
             android:shadowDx="5"
             android:shadowDy="5"
             android:textColor="@color/text_yellow"
-            android:textSize="35sp" />
+            android:textSize="30sp" />
 
     </androidx.cardview.widget.CardView>
 
@@ -84,6 +84,27 @@
         app:cardMaxElevation="10dp"
         app:cardPreventCornerOverlap="true">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/shoulders"
+            android:id="@+id/shouldersImage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Shoulders"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="gravity"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
 
     <!-- Biceps Card View  -->
@@ -103,6 +124,28 @@
         app:cardElevation="10dp"
         app:cardMaxElevation="10dp"
         app:cardPreventCornerOverlap="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/biceps"
+            android:id="@+id/bicepsImage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Biceps"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="gravity"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="30sp" />
 
     </androidx.cardview.widget.CardView>
 
@@ -125,6 +168,27 @@
         app:cardMaxElevation="10dp"
         app:cardPreventCornerOverlap="true">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/triceps"
+            android:id="@+id/tricepsImage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/dm_sans"
+            android:gravity="center_vertical|center_horizontal"
+            android:shadowColor="@color/black"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="15"
+            android:text="Triceps"
+            android:textAlignment="gravity"
+            android:textColor="@color/text_yellow"
+            android:textSize="30sp"
+            android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
 
     <!-- Back Card View  -->
@@ -144,6 +208,27 @@
         app:cardElevation="10dp"
         app:cardMaxElevation="10dp"
         app:cardPreventCornerOverlap="true">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/back"
+            android:id="@+id/backImage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Back"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="gravity"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="30sp" />
 
     </androidx.cardview.widget.CardView>
 
@@ -166,6 +251,27 @@
         app:cardMaxElevation="10dp"
         app:cardPreventCornerOverlap="true">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/abs"
+            android:id="@+id/absImage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Abs and Obliques"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="gravity"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
 
     <!-- Legs Card View  -->
@@ -185,6 +291,28 @@
         app:cardElevation="10dp"
         app:cardMaxElevation="10dp"
         app:cardPreventCornerOverlap="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/legs"
+            android:id="@+id/legsImage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Legs"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="gravity"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="30sp" />
 
     </androidx.cardview.widget.CardView>
 
@@ -206,6 +334,28 @@
         app:cardElevation="10dp"
         app:cardMaxElevation="10dp"
         app:cardPreventCornerOverlap="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bum"
+            android:id="@+id/bumImage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Glutes"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="gravity"
+            android:fontFamily="@font/dm_sans"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:textColor="@color/text_yellow"
+            android:textSize="30sp" />
 
     </androidx.cardview.widget.CardView>
 
