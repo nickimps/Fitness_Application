@@ -12,19 +12,19 @@
         android:id="@+id/calCounterHeaderTextView"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:gravity="center_vertical|center_horizontal"
-        android:textAlignment="gravity"
+        android:background="@drawable/header_banner"
         android:elevation="10dp"
-        android:text="Calorie Counter"
         android:fontFamily="@font/dm_sans"
-        android:textStyle="bold"
+        android:gravity="center_vertical|center_horizontal"
         android:shadowColor="@color/black"
-        android:shadowRadius="15"
         android:shadowDx="5"
         android:shadowDy="5"
+        android:shadowRadius="15"
+        android:text="Calorie Counter"
+        android:textAlignment="gravity"
         android:textColor="@color/text_yellow"
         android:textSize="35sp"
-        android:background="@drawable/header_banner"/>
+        android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/totalCalsCardView"
@@ -62,22 +62,22 @@
                 android:textSize="35sp" />
 
             <TextView
+                android:id="@+id/totalProteinTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/totalProteinTextView"
                 android:layout_below="@id/totalCalTextView"
-                android:paddingTop="30dp"
-                android:paddingStart="10dp"
-                android:text="@string/totalProtein"
+                android:layout_gravity="center"
                 android:fontFamily="@font/dm_sans"
-                android:textStyle="bold"
+                android:paddingStart="10dp"
+                android:paddingTop="30dp"
                 android:shadowColor="@color/black"
-                android:shadowRadius="15"
                 android:shadowDx="5"
                 android:shadowDy="5"
+                android:shadowRadius="15"
+                android:text="@string/totalProtein"
                 android:textColor="@color/text_yellow"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
