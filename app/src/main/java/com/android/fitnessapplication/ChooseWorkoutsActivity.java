@@ -1,6 +1,7 @@
 package com.android.fitnessapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +27,12 @@ public class ChooseWorkoutsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_workouts);
+
+        //get intent and change label to workoutType
+        Intent intent = getIntent();
+        String workoutType = intent.getStringExtra("workout_type");
+        TextView workoutTypeHeaderTextView = findViewById(R.id.workoutTypeHeaderTextView);
+        workoutTypeHeaderTextView.setText(workoutType);
 
         //change workoutTypeHeaderTextView for passed in intent
 
@@ -64,6 +71,8 @@ public class ChooseWorkoutsActivity extends AppCompatActivity {
             String selectedWorkout = (String) textViewWorkoutType.getText();
 
             System.out.println(selectedWorkout);
+
+
         }
     }
 }
