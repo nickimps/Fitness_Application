@@ -36,10 +36,6 @@
         android:textAlignment="textStart"
         android:text="@string/selected_exercises"
         android:fontFamily="@font/dm_sans"
-        android:shadowColor="@color/black"
-        android:shadowRadius="15"
-        android:shadowDx="5"
-        android:shadowDy="5"
         android:textColor="@color/text_yellow"
         android:textSize="25sp"/>
 
@@ -62,10 +58,6 @@
         android:textAlignment="textStart"
         android:text="@string/choose_an_exercise"
         android:fontFamily="@font/dm_sans"
-        android:shadowColor="@color/black"
-        android:shadowRadius="15"
-        android:shadowDx="5"
-        android:shadowDy="5"
         android:textColor="@color/text_yellow"
         android:textSize="25sp"/>
 

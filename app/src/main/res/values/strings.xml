@@ -32,4 +32,11 @@
     <string name="video_placeholder">Video Embedded Here</string>
     <string name="repsNamePlaceholder">REPS</string>
     <string name="repsNumPlaceholder">X-XX</string>
+    <string name="kgs">kg</string>
+    <string name="cms">cm</string>
+    <string name="decimal">.</string>
+    <string name="choose_date">Choose Date</string>
+    <string name="record_weight_labelbutton">Record Weight</string>
+    <string name="current_height">Current Height</string>
+    <string name="goal_weight">Goal Weight</string>
 </resources>

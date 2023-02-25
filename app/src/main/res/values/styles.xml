@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="NumberPickerCustomText" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+    </style>
+</resources>

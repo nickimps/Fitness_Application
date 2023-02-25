@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecordWeightActivity"
-    android:background="@color/background_grey"
-    android:padding="15dp">
+    android:background="@color/background_grey">
 
     <TextView
         android:id="@+id/weightHistoryTextView"
@@ -24,7 +23,8 @@
         android:shadowDy="5"
         android:textColor="@color/text_yellow"
         android:textSize="35sp"
-        android:background="@drawable/header_banner"/>
+        android:background="@drawable/header_banner"
+        android:layout_margin="15dp"/>
 
     <com.jjoe64.graphview.GraphView
         android:layout_width="350dp"
@@ -34,128 +34,208 @@
         android:layout_marginTop="30dp"
         android:layout_below="@id/weightHistoryTextView"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/dateTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="350dp"
-        android:layout_height="55dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/weightGraph"
-        app:errorEnabled="true"
-        android:layout_marginTop="20dp"
-        app:endIconMode="clear_text">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/dateTextInputField"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans"
-            android:inputType="textPersonName"
-            android:hint="Date for new record"
-            android:gravity="center_horizontal"
-            android:background="@color/background_light_grey"
-            android:textSize="20sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/weightOnDateTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="350dp"
-        android:layout_height="55dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/dateTextLayout"
-        android:layout_marginTop="10dp"
-        app:errorEnabled="true"
-        app:endIconMode="clear_text">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/weightOnDateTextInputField"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans"
-            android:inputType="textPersonName"
-            android:hint="Weight on that date"
-            android:gravity="center_horizontal"
-            android:background="@color/background_light_grey"
-            android:textSize="20sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:layout_width="350dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/recordCardView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recordWeightButton"
-        android:layout_below="@id/weightOnDateTextLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="Record Weight"
-        android:textStyle="bold"
-        android:backgroundTint="@color/text_yellow"
-        android:textSize="20sp"
-        android:textColor="@color/background_grey"
-        />
+        android:layout_below="@id/weightGraph"
+        android:layout_margin="15dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardBackgroundColor="@color/background_light_grey"
+        android:layout_centerHorizontal="true">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/currentHeightTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="350dp"
-        android:layout_height="55dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/recordWeightButton"
-        android:layout_marginTop="30dp"
-        app:errorEnabled="true"
-        app:endIconMode="clear_text">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/currentHeightTextInputField"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/newWeightLayout"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical|center_horizontal" >
+
+                <Button
+                    android:id="@+id/chooseDateButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="25dp"
+                    android:text="@string/choose_date"
+                    android:backgroundTint="@color/background_dark_grey" />
+
+                <NumberPicker
+                    android:id="@+id/newWeightNumberPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/NumberPickerCustomText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/decimal"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/dm_sans"
+                    android:padding="3dp"/>
+
+                <NumberPicker
+                    android:id="@+id/newWeightDecimalNumberPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/NumberPickerCustomText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kgs"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/dm_sans"
+                    android:padding="3dp"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/recordWeightButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/newWeightLayout"
+                android:layout_centerHorizontal="true"
+                android:text="@string/record_weight_labelbutton"
+                android:textStyle="bold"
+                android:backgroundTint="@color/text_yellow"
+                android:textSize="20sp"
+                android:textColor="@color/background_grey" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/currentAndGoalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/recordCardView"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal" >
+
+        <!--    Current Height Layout    -->
+        <LinearLayout
+            android:id="@+id/currentHeightLayout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans"
-            android:inputType="textPersonName"
-            android:hint="Current Height"
-            android:gravity="center_horizontal"
-            android:background="@color/background_light_grey"
-            android:textSize="20sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginEnd="7dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/goalWeightTextInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="350dp"
-        android:layout_height="55dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/currentHeightTextLayout"
-        android:layout_marginTop="10dp"
-        app:errorEnabled="true"
-        app:endIconMode="clear_text">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/current_height"
+                android:fontFamily="@font/dm_sans"
+                android:textColor="@color/text_yellow"
+                android:textSize="20sp"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/goalWeightTextInputField"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal">
+
+                <NumberPicker
+                    android:id="@+id/heightNumberPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:theme="@style/NumberPickerCustomText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cms"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/dm_sans"
+                    android:padding="3dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--    Goal Weight Layout    -->
+        <LinearLayout
+            android:id="@+id/goalWeightLayout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans"
-            android:inputType="textPersonName"
-            android:hint="Goal Weight"
-            android:gravity="center_horizontal"
-            android:background="@color/background_light_grey"
-            android:textSize="20sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginStart="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/goal_weight"
+                android:fontFamily="@font/dm_sans"
+                android:textColor="@color/text_yellow"
+                android:textSize="20sp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal">
+
+                <NumberPicker
+                    android:id="@+id/goalWeightNumberPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:theme="@style/NumberPickerCustomText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/decimal"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/dm_sans"
+                    android:padding="3dp"/>
+
+                <NumberPicker
+                    android:id="@+id/goalWeightDecimalNumberPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/NumberPickerCustomText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kgs"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/dm_sans"
+                    android:padding="3dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
         android:id="@+id/currentBMITextView"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
         android:layout_marginTop="15dp"
-        android:text="Current BMI: xxxx"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:layout_below="@id/goalWeightTextInputLayout"
+        android:layout_below="@id/currentAndGoalLayout"
         android:layout_centerHorizontal="true"
+        android:text="Current BMI: xxxx"
+        android:fontFamily="@font/dm_sans_medium"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="30sp"
         android:textColor="@color/text_yellow"
-        android:background="@color/background_dark_grey"
-        />
+        android:background="@drawable/bmi_banner" />
 
 </RelativeLayout>
