@@ -11,28 +11,32 @@
         android:id="@+id/weightHistoryTextView"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:gravity="center_vertical|center_horizontal"
-        android:textAlignment="gravity"
+        android:layout_margin="15dp"
+        android:background="@drawable/header_banner"
         android:elevation="10dp"
-        android:text="Weight History"
         android:fontFamily="@font/dm_sans"
-        android:textStyle="bold"
+        android:gravity="center_vertical|center_horizontal"
         android:shadowColor="@color/black"
-        android:shadowRadius="15"
         android:shadowDx="5"
         android:shadowDy="5"
+        android:shadowRadius="15"
+        android:text="@string/weight_history"
+        android:textAlignment="gravity"
         android:textColor="@color/text_yellow"
         android:textSize="35sp"
-        android:background="@drawable/header_banner"
-        android:layout_margin="15dp"/>
+        android:textStyle="bold" />
 
     <com.jjoe64.graphview.GraphView
-        android:layout_width="350dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
         android:id="@+id/weightGraph"
-        android:layout_marginTop="30dp"
-        android:layout_below="@id/weightHistoryTextView"/>
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_below="@id/weightHistoryTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/recordCardView"
@@ -99,8 +103,8 @@
             <Button
                 android:id="@+id/recordWeightButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
                 android:layout_below="@id/newWeightLayout"
                 android:layout_centerHorizontal="true"
                 android:text="@string/record_weight_labelbutton"

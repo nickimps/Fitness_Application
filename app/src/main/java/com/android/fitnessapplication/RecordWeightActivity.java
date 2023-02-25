@@ -24,11 +24,26 @@ public class RecordWeightActivity extends AppCompatActivity {
     private Button chooseDateButton;
     private NumberPicker newWeightNumberPicker, newWeightDecimalNumberPicker, goalWeightNumberPicker, goalWeightDecimalNumberPicker, heightNumberPicker;
     private int day, month, year;
+    TextView currentBMI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_weight);
+
+        currentBMI = findViewById(R.id.currentBMITextView);
+        /*
+        double BMI = LOAD THE LAST SET BMI FROM THE SHARED PREF
+
+        if (no BMI value saved in SharedPref) {
+            currentBMI.setText("No BMI");
+        } else {
+            //Display BMI
+            String bmiString = String.format(Locale.getDefault(),"Current BMI: %.3f", BMI);
+            currentBMI.setText(bmiString);
+        }
+        */
+
 
         // For the record number pickers -----------------------------------------------------------
         newWeightNumberPicker = findViewById(R.id.newWeightNumberPicker);
@@ -60,7 +75,7 @@ public class RecordWeightActivity extends AppCompatActivity {
         });
         //------------------------------------------------------------------------------------------
 
-        // For the goal number pickers -----------------------------------------------------------
+        // For the goal number pickers -------------------------------------------------------------
         goalWeightNumberPicker = findViewById(R.id.goalWeightNumberPicker);
         goalWeightNumberPicker.setMinValue(15);
         goalWeightNumberPicker.setMaxValue(200);
@@ -102,7 +117,7 @@ public class RecordWeightActivity extends AppCompatActivity {
 
             // UPDATE BMI IF NECESSARY?
         });
-        //----------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------
 
         Button recordWeightButton = findViewById(R.id.recordWeightButton);
         recordWeightButton.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +126,7 @@ public class RecordWeightActivity extends AppCompatActivity {
                 //Get date and log it.
                 String buttonDate = String.valueOf(chooseDateButton.getText());
 
+                //Check if a date is chosen before recording activity
                 if (buttonDate.equals("Choose Date")) {
                     Toast.makeText(getApplicationContext(),"Please choose a date",Toast.LENGTH_SHORT).show();
                 } else {
@@ -118,24 +134,23 @@ public class RecordWeightActivity extends AppCompatActivity {
                     int day = Integer.parseInt(buttonDate.split("/")[1]);
                     int year = Integer.parseInt(buttonDate.split("/")[2]);
 
-                    System.out.println(month + " " + day + " " + year); // I think it should override the value if the date already exists in the table
+                    // I think it should override the value if the date already exists in the table
+                    // USE THE DATE TO SAVE WITH THE NEW weightKG VALUE
 
                     //Grab height (Shared Pref)
                     double height = 178 / 100;
 
-                    //Grab Current Weight
+                    //Grab Newly Recorded Weight
                     String weightFromPicker = newWeightNumberPicker.getValue() + "." + newWeightDecimalNumberPicker.getValue();
                     double weightKG = Float.parseFloat(weightFromPicker) / 2.205;
 
-                    //Calc BMI
+                    //Calculate BMI
                     double BMI = weightKG / (height * height) ;
 
                     //Display BMI
-                    TextView currentBMI = findViewById(R.id.currentBMITextView);
                     String bmiString = String.format(Locale.getDefault(),"Current BMI: %.3f", BMI);
                     currentBMI.setText(bmiString);
                 }
-
             }
         });
 

@@ -39,4 +39,5 @@
     <string name="record_weight_labelbutton">Record Weight</string>
     <string name="current_height">Current Height</string>
     <string name="goal_weight">Goal Weight</string>
+    <string name="weight_history">Weight History</string>
 </resources>
