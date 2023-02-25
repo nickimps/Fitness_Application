@@ -44,17 +44,30 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_below="@id/chosenLabel"
-        android:layout_marginHorizontal="25dp"
+        android:layout_marginHorizontal="15dp"
         android:orientation="vertical"
         android:background="@drawable/header_banner"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <Button
+        android:id="@+id/beginWorkoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/chosenWorkoutsRecyclerView"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/begin_workout"
+        android:textStyle="bold"
+        android:backgroundTint="@color/text_yellow"
+        android:textSize="20sp"
+        android:textColor="@color/background_grey"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/exerciseLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/chosenWorkoutsRecyclerView"
-        android:layout_marginTop="15dp"
+        android:layout_below="@id/beginWorkoutButton"
         android:textAlignment="textStart"
         android:text="@string/choose_an_exercise"
         android:fontFamily="@font/dm_sans"
@@ -69,5 +82,7 @@
         android:orientation="vertical"
         android:background="@drawable/header_banner"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
 
 </RelativeLayout>

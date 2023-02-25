@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class RecyclerAdapterExerciseToChoose extends RecyclerView.Adapter<RecyclerAdapterExerciseToChoose.MyRecyclerHolderExerciseToChoose> {
-
     private ArrayList<ExerciseTypeObject> exercise_list;
 
     public class MyRecyclerHolderExerciseToChoose extends RecyclerView.ViewHolder {
@@ -32,7 +31,7 @@ public class RecyclerAdapterExerciseToChoose extends RecyclerView.Adapter<Recycl
     public MyRecyclerHolderExerciseToChoose onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.exercise_card, parent, false);
 
-        view.setOnClickListener((CreateWorkoutActivity.myOnClickListenerToChoose));
+        view.setOnClickListener(CreateWorkoutActivity.myOnClickListenerToChoose);
 
         MyRecyclerHolderExerciseToChoose myRecyclerHolderExerciseToChoose = new MyRecyclerHolderExerciseToChoose(view);
         return myRecyclerHolderExerciseToChoose;

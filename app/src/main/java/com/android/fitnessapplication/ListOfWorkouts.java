@@ -37,8 +37,8 @@ public class ListOfWorkouts {
     static String[] exercises = {
             "Push Down",
             "Push Up",
-            "Pull Down",
-            "Push Up",
+            "Pull Far Down",
+            "Push Far Up",
             "Crab Walk",
             "Plank"
     };

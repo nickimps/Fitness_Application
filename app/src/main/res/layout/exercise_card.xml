@@ -42,7 +42,6 @@
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:clickable="true"
                 android:background="@drawable/circle_info_ripple"
                 android:fontFamily="@font/dm_sans"
                 android:gravity="center_vertical|center_horizontal"

@@ -40,4 +40,5 @@
     <string name="current_height">Current Height</string>
     <string name="goal_weight">Goal Weight</string>
     <string name="weight_history">Weight History</string>
+    <string name="begin_workout">Begin Workout</string>
 </resources>
