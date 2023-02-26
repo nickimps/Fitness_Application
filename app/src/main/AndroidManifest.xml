@@ -12,6 +12,9 @@
         android:theme="@style/Theme.FitnessApplication"
         tools:targetApi="31">
         <activity
+            android:name=".SetWorkoutParametersActivity"
+            android:exported="false" />
+        <activity
             android:name=".PerformWorkoutActivity"
             android:exported="false" />
         <activity
@@ -35,7 +38,6 @@
         <activity
             android:name=".WorkoutsActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">

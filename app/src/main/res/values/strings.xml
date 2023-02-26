@@ -41,4 +41,8 @@
     <string name="goal_weight">Goal Weight</string>
     <string name="weight_history">Weight History</string>
     <string name="begin_workout">Begin Workout</string>
+    <string name="set_workout_parameters">Set Workout Parameters</string>
+    <string name="workout_parameters">Workout Parameters</string>
+    <string name="sets">sets</string>
+    <string name="reps">reps</string>
 </resources>

@@ -13,6 +13,7 @@ import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -47,6 +48,35 @@ public class PerformWorkoutActivity extends AppCompatActivity {
         TextView workoutNameHeaderTextView = findViewById(R.id.workoutNameHeaderTextView);
         workoutNameHeaderTextView.setText(workoutName);
 
+        exercise_name_list = new ArrayList<>();
+        rep_numbers_list = new ArrayList<>();
+        if (workoutName.equals("Custom Workout")) {
+            max_num_of_sets = intent.getIntExtra("sets", 0);
+
+            ArrayList<String> string_exercise_list = intent.getStringArrayListExtra("exercise_list");
+            ArrayList<String> string_rep_list = intent.getStringArrayListExtra("rep_list");
+
+            for (int i = 0; i < string_exercise_list.size(); i++) {
+                exercise_name_list.add(new WorkoutTypeObject(string_exercise_list.get(i), 0));
+                rep_numbers_list.add(new WorkoutTypeObject(string_rep_list.get(i), 1));
+            }
+        } else {
+            max_num_of_sets = Integer.parseInt(ListOfWorkouts.listOfWorkouts[0][2]);
+
+            int workout_index = 0;
+            for (int i = 0; i < ListOfWorkouts.listOfWorkouts.length; i++){
+                if (workoutName.equals(ListOfWorkouts.listOfWorkouts[i][0])) {
+                    workout_index = i;
+                    break;
+                }
+            }
+
+            for (int i = 3; i < ListOfWorkouts.listOfWorkouts[0].length; i++) {
+                exercise_name_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[workout_index][i], 0));
+                rep_numbers_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[workout_index][++i], 1));
+            }
+        }
+
         startStopButton = (Button) findViewById(R.id.startStopButton);
         buttonGapView = findViewById(R.id.buttonGapView);
         pauseButton = findViewById(R.id.pauseButton);
@@ -57,12 +87,11 @@ public class PerformWorkoutActivity extends AppCompatActivity {
         timerActive = false;
         timerChronometer = findViewById(R.id.timerChronometer);
 
-        //Get number of sets to show
-        max_num_of_sets = Integer.parseInt(ListOfWorkouts.listOfWorkouts[0][2]);
+        // Get number of sets to show
         current_set_num = 0;
         setsRemainingTextView.setText(String.format(Locale.getDefault(),"%d/%d", current_set_num, max_num_of_sets));
 
-        //Default hide the pause button until the start button is clicked
+        // Default hide the pause button until the start button is clicked
         buttonGapView.setVisibility(View.GONE);
         pauseButton.setVisibility(View.GONE);
 
@@ -128,13 +157,6 @@ public class PerformWorkoutActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        exercise_name_list = new ArrayList<>();
-        rep_numbers_list = new ArrayList<>();
-        for (int i = 3; i < ListOfWorkouts.listOfWorkouts[0].length; i++) {
-            exercise_name_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[0][i], 0)); //index 0 is placeholder, need to get the index of this workout when we come to this screen
-            rep_numbers_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[0][++i], 1));
-        }
 
         adapter = new RecyclerAdapterPerformWorkout(exercise_name_list, rep_numbers_list);
         recyclerView.setAdapter(adapter);

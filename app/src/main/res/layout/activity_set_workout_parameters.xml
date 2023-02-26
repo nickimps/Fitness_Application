@@ -1,0 +1,76 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey"
+    android:padding="15dp"
+    tools:context=".SetWorkoutParametersActivity">
+
+    <TextView
+        android:id="@+id/headerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAlignment="gravity"
+        android:elevation="10dp"
+        android:text="@string/workout_parameters"
+        android:fontFamily="@font/dm_sans"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowRadius="15"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:textColor="@color/text_yellow"
+        android:textSize="35sp"
+        android:background="@drawable/header_banner"/>
+
+    <LinearLayout
+        android:id="@+id/linLayoutSets"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_below="@id/headerTextView"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal">
+
+        <NumberPicker
+            android:id="@+id/setsNumberPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/NumberPickerCustomText"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/sets"
+            android:textSize="25sp"
+            android:fontFamily="@font/dm_sans"
+            android:padding="3dp"
+            android:gravity="center_horizontal|center_vertical"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listOfExercisesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_below="@id/linLayoutSets"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <Button
+        android:id="@+id/beginWorkoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/listOfExercisesRecyclerView"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="15dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/begin_workout"
+        android:textStyle="bold"
+        android:backgroundTint="@color/text_yellow"
+        android:textSize="20sp"
+        android:textColor="@color/background_grey"/>
+
+</RelativeLayout>

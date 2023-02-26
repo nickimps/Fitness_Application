@@ -24,17 +24,24 @@ public class CreateWorkoutActivity extends AppCompatActivity {
     private static RecyclerView recyclerViewExerciseSelected, recyclerViewExerciseToChoose;
     private static ArrayList<ExerciseTypeObject> exercise_list, selected_exercise_list;
     public static View.OnClickListener myOnClickListenerSelected, myOnClickListenerToChoose;
-    private Button beginWorkoutButton;
+    private Button setParamsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_workout);
 
-        beginWorkoutButton = findViewById(R.id.beginWorkoutButton);
-        beginWorkoutButton.setOnClickListener(view -> {
-            Intent intent = new Intent(CreateWorkoutActivity.this, PerformWorkoutActivity.class);
-            intent.putExtra("workout_name", "Custom Workout");
+        setParamsButton = findViewById(R.id.setParamsButton);
+        setParamsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(CreateWorkoutActivity.this, SetWorkoutParametersActivity.class);
+
+            ArrayList<String> string_exercise_list = new ArrayList<>();
+
+            for (ExerciseTypeObject exercise : selected_exercise_list){
+                string_exercise_list.add(exercise.getExercise_name());
+            }
+
+            intent.putExtra("exercise_list", string_exercise_list);
             startActivity((intent));
         });
 
@@ -80,9 +87,9 @@ public class CreateWorkoutActivity extends AppCompatActivity {
             adapterSelected.notifyItemRemoved(selectedItemPosition);
 
             if (selected_exercise_list.size() != 0)
-                beginWorkoutButton.setVisibility(View.VISIBLE);
+                setParamsButton.setVisibility(View.VISIBLE);
             else
-                beginWorkoutButton.setVisibility(View.INVISIBLE);
+                setParamsButton.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -104,7 +111,7 @@ public class CreateWorkoutActivity extends AppCompatActivity {
             selected_exercise_list.add(new ExerciseTypeObject(selectedExercise));
             adapterSelected.notifyItemInserted(selected_exercise_list.size());
 
-            beginWorkoutButton.setVisibility(View.VISIBLE);
+            setParamsButton.setVisibility(View.VISIBLE);
         }
     }
 }
