@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -39,6 +40,12 @@ public class PerformWorkoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perform_workout);
+
+        // Change workout name
+        Intent intent = getIntent();
+        String workoutName = intent.getStringExtra("workout_name");
+        TextView workoutNameHeaderTextView = findViewById(R.id.workoutNameHeaderTextView);
+        workoutNameHeaderTextView.setText(workoutName);
 
         startStopButton = (Button) findViewById(R.id.startStopButton);
         buttonGapView = findViewById(R.id.buttonGapView);

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewParent;
@@ -31,6 +32,11 @@ public class CreateWorkoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_workout);
 
         beginWorkoutButton = findViewById(R.id.beginWorkoutButton);
+        beginWorkoutButton.setOnClickListener(view -> {
+            Intent intent = new Intent(CreateWorkoutActivity.this, PerformWorkoutActivity.class);
+            intent.putExtra("workout_name", "Custom Workout");
+            startActivity((intent));
+        });
 
         myOnClickListenerSelected = new MyOnClickListenerSelected(this);
         myOnClickListenerToChoose = new MyOnClickListenerToChoose(this);
@@ -71,7 +77,7 @@ public class CreateWorkoutActivity extends AppCompatActivity {
             int selectedItemPosition = recyclerViewExerciseSelected.getChildAdapterPosition(view);
 
             selected_exercise_list.remove(selectedItemPosition);
-            adapterSelected.notifyDataSetChanged();
+            adapterSelected.notifyItemRemoved(selectedItemPosition);
 
             if (selected_exercise_list.size() != 0)
                 beginWorkoutButton.setVisibility(View.VISIBLE);
@@ -96,7 +102,7 @@ public class CreateWorkoutActivity extends AppCompatActivity {
             String selectedExercise = (String) textViewWorkoutType.getText();
 
             selected_exercise_list.add(new ExerciseTypeObject(selectedExercise));
-            adapterSelected.notifyDataSetChanged();
+            adapterSelected.notifyItemInserted(selected_exercise_list.size());
 
             beginWorkoutButton.setVisibility(View.VISIBLE);
         }

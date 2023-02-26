@@ -19,7 +19,6 @@ public class WorkoutsActivity extends AppCompatActivity {
         chestCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Go to register screen on click
                 Intent intent = new Intent(WorkoutsActivity.this, ChooseWorkoutsActivity.class);
                 intent.putExtra("workout_type", "Chest");
                 startActivity((intent));
@@ -31,7 +30,6 @@ public class WorkoutsActivity extends AppCompatActivity {
         shouldersCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Go to register screen on click
                 Intent intent = new Intent(WorkoutsActivity.this, ChooseWorkoutsActivity.class);
                 intent.putExtra("workout_type", "Shoulders");
                 startActivity((intent));
@@ -43,7 +41,6 @@ public class WorkoutsActivity extends AppCompatActivity {
         bicepsCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Go to register screen on click
                 Intent intent = new Intent(WorkoutsActivity.this, ChooseWorkoutsActivity.class);
                 intent.putExtra("workout_type", "Biceps");
                 startActivity((intent));
@@ -55,7 +52,6 @@ public class WorkoutsActivity extends AppCompatActivity {
         tricepsCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Go to register screen on click
                 Intent intent = new Intent(WorkoutsActivity.this, ChooseWorkoutsActivity.class);
                 intent.putExtra("workout_type", "Triceps");
                 startActivity((intent));
@@ -67,7 +63,6 @@ public class WorkoutsActivity extends AppCompatActivity {
         backCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Go to register screen on click
                 Intent intent = new Intent(WorkoutsActivity.this, ChooseWorkoutsActivity.class);
                 intent.putExtra("workout_type", "Back");
                 startActivity((intent));
@@ -79,7 +74,6 @@ public class WorkoutsActivity extends AppCompatActivity {
         absCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Go to register screen on click
                 Intent intent = new Intent(WorkoutsActivity.this, ChooseWorkoutsActivity.class);
                 intent.putExtra("workout_type", "Abs & Obliques");
                 startActivity((intent));
@@ -91,7 +85,6 @@ public class WorkoutsActivity extends AppCompatActivity {
         legsCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Go to register screen on click
                 Intent intent = new Intent(WorkoutsActivity.this, ChooseWorkoutsActivity.class);
                 intent.putExtra("workout_type", "Legs");
                 startActivity((intent));
@@ -103,7 +96,6 @@ public class WorkoutsActivity extends AppCompatActivity {
         BumCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Go to register screen on click
                 Intent intent = new Intent(WorkoutsActivity.this, ChooseWorkoutsActivity.class);
                 intent.putExtra("workout_type", "Glutes");
                 startActivity((intent));
