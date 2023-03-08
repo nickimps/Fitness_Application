@@ -142,7 +142,7 @@ public class RecordWeightActivity extends AppCompatActivity {
 
                     //Grab Newly Recorded Weight
                     String weightFromPicker = newWeightNumberPicker.getValue() + "." + newWeightDecimalNumberPicker.getValue();
-                    double weightKG = Float.parseFloat(weightFromPicker) / 2.205;
+                    double weightKG = Float.parseFloat(weightFromPicker);
 
                     //Calculate BMI
                     double BMI = weightKG / (height * height) ;
