@@ -138,7 +138,8 @@ public class RecordWeightActivity extends AppCompatActivity {
                     // USE THE DATE TO SAVE WITH THE NEW weightKG VALUE
 
                     //Grab height (Shared Pref)
-                    double height = 178 / 100;
+                    double height = heightNumberPicker.getValue();
+                    height = height / 100;
 
                     //Grab Newly Recorded Weight
                     String weightFromPicker = newWeightNumberPicker.getValue() + "." + newWeightDecimalNumberPicker.getValue();
