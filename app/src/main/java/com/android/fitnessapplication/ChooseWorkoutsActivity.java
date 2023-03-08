@@ -70,10 +70,9 @@ public class ChooseWorkoutsActivity extends AppCompatActivity {
             TextView textViewWorkoutType = (TextView) viewHolder.itemView.findViewById(R.id.workout_name_card);
             String selectedWorkout = (String) textViewWorkoutType.getText();
 
-            // Go To perform workout screen
-            Intent intent = new Intent(ChooseWorkoutsActivity.this, PerformWorkoutActivity.class);
-            intent.putExtra("workout_name", selectedWorkout);
-            startActivity((intent));
+            System.out.println(selectedWorkout);
+
+
         }
     }
 }
