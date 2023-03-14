@@ -3,7 +3,7 @@ package com.android.fitnessapplication;
 public class ListOfWorkouts {
     static String[][] listOfWorkouts = {
             { "Explosive Chest",    //workout name
-                "Chest",    // filter
+                "chest",    // filter
                 "3",        //# sets
                 "Barbell Bench Press", "6-8", //this point down are the exercise name and reps
                 "Dumbbell Bench Press", "10-12",
@@ -14,7 +14,7 @@ public class ListOfWorkouts {
                 "Dips", "6-8",
                 "Push-Ups", "15-20" },
             { "Pumped Up ShoulderS",
-                "Shoulders",
+                "shoulders",
                 "3",
                 "Military Press", "4-6",
                 "Push Press", "AMRAP",
@@ -26,7 +26,7 @@ public class ListOfWorkouts {
                 "Farmers Carry", "30 seconds"
             },
             { "Blasting Biceps",
-                    "Biceps",
+                    "biceps",
                     "4",
                     "Dumbbell Curl", "12 Each Arm",
                     "Hammer Curl", "12 Each Arm",
@@ -36,7 +36,7 @@ public class ListOfWorkouts {
                     "Concentration Curl", "12 Each Arm"
             },
             { "Tearing-Up Triceps",
-                    "Triceps",
+                    "triceps",
                     "4",
                     "Tricep Pushdown", "12",
                     "Overhead Tricep Extension", "15",
@@ -46,7 +46,7 @@ public class ListOfWorkouts {
                     "Push-Ups", "12"
             },
             { "Killer Core",
-                    "Abs & Obliques",
+                    "abs & obliques",
                     "3",
                     "Sit-Ups", "12",
                     "Crunches", "20",
@@ -56,7 +56,7 @@ public class ListOfWorkouts {
                     "Lumberjack Swings", "12 Each Side",
                     "Russian Twist", "20" },
             { "Light-Em-Up Legs",
-                    "Legs",
+                    "legs",
                     "3",
                     "Back Squat", "8",
                     "Front Squat", "8",
@@ -67,7 +67,7 @@ public class ListOfWorkouts {
                     "Lunges", "25",
                     "Leg Curls", "12" },
             { "Bursting Back",
-                    "Back",
+                    "back",
                     "4",
                     "Barbell Deadlift", "6",
                     "Cleans", "4",
@@ -77,14 +77,14 @@ public class ListOfWorkouts {
                     "Pull-Ups", "AMRAPS",
                     "T-bar Rows", "10" },
             { "Greedy Glutes",
-                    "Glutes",
+                    "glutes",
                     "3",
                     "Hip Thrusts", "8",
                     "Back Squat", "6",
                     "Trap-Bar Deadlift", "6",
                     "Kettlebell Swing", "12",
                     "Bulgarian Split Squat", "8",
-                    "Good Morning", "6",
+                    "Good Morning", "6",s
                     "Cable Kickback", "12" }
     };
 
