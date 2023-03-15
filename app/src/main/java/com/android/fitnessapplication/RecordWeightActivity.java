@@ -119,6 +119,10 @@ public class RecordWeightActivity extends AppCompatActivity {
         });
         //------------------------------------------------------------------------------------------
 
+        // this is where the graph is going for weight history
+        View graphView = findViewById(R.id.weightGraph);
+
+
         Button recordWeightButton = findViewById(R.id.recordWeightButton);
         recordWeightButton.setOnClickListener(new View.OnClickListener() {
             @Override
