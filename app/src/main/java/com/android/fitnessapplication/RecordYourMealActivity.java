@@ -17,21 +17,7 @@ public class RecordYourMealActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_your_meal);
 
-        getCaloriesPicker = findViewById(R.id.recordCaloriesTextInputField);
-        getCaloriesPicker.setMinValue(1);
-        getCaloriesPicker.setWrapSelectorWheel(false);
 
-        getProteinPicker = findViewById(R.id.recordProteinTextInputField);
-        getProteinPicker.setMinValue(1);
-        getProteinPicker.setWrapSelectorWheel(false);
-
-        getFatPicker = findViewById(R.id.recordFatsTextInputField);
-        getFatPicker.setMinValue(1);
-        getFatPicker.setWrapSelectorWheel(false);
-
-        getCarbsPicker = findViewById(R.id.recordCarbsTextInputField);
-        getCarbsPicker.setMinValue(1);
-        getCarbsPicker.setWrapSelectorWheel(false);
 
         Button recordMealButton = findViewById(R.id.recordYourMealButton);
         //Making the functions of the save the meal below
@@ -39,7 +25,21 @@ public class RecordYourMealActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View myView) {
+                getCaloriesPicker = findViewById(R.id.recordCaloriesTextInputField);
+                getCaloriesPicker.setMinValue(1);
+                getCaloriesPicker.setWrapSelectorWheel(false);
 
+                getProteinPicker = findViewById(R.id.recordProteinTextInputField);
+                getProteinPicker.setMinValue(1);
+                getProteinPicker.setWrapSelectorWheel(false);
+
+                getFatPicker = findViewById(R.id.recordFatsTextInputField);
+                getFatPicker.setMinValue(1);
+                getFatPicker.setWrapSelectorWheel(false);
+
+                getCarbsPicker = findViewById(R.id.recordCarbsTextInputField);
+                getCarbsPicker.setMinValue(1);
+                getCarbsPicker.setWrapSelectorWheel(false);
                 int calories = getCaloriesPicker.getValue();
                 int protein = getProteinPicker.getValue();
                 int carbs = getFatPicker.getValue();
