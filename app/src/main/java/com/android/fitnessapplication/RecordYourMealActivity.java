@@ -9,15 +9,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class RecordYourMealActivity extends AppCompatActivity {
 
-    private NumberPicker getProteinPicker, getFatPicker, getCarbsPicker, getCaloriesPicker;
+    private TextInputEditText getProteinPicker, getFatPicker, getCarbsPicker, getCaloriesPicker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_your_meal);
-
-
 
         Button recordMealButton = findViewById(R.id.recordYourMealButton);
         //Making the functions of the save the meal below
@@ -26,24 +26,21 @@ public class RecordYourMealActivity extends AppCompatActivity {
             @Override
             public void onClick(View myView) {
                 getCaloriesPicker = findViewById(R.id.recordCaloriesTextInputField);
-                getCaloriesPicker.setMinValue(1);
-                getCaloriesPicker.setWrapSelectorWheel(false);
-
                 getProteinPicker = findViewById(R.id.recordProteinTextInputField);
-                getProteinPicker.setMinValue(1);
-                getProteinPicker.setWrapSelectorWheel(false);
-
                 getFatPicker = findViewById(R.id.recordFatsTextInputField);
-                getFatPicker.setMinValue(1);
-                getFatPicker.setWrapSelectorWheel(false);
-
                 getCarbsPicker = findViewById(R.id.recordCarbsTextInputField);
-                getCarbsPicker.setMinValue(1);
-                getCarbsPicker.setWrapSelectorWheel(false);
-                int calories = getCaloriesPicker.getValue();
-                int protein = getProteinPicker.getValue();
-                int carbs = getFatPicker.getValue();
-                int fats = getCarbsPicker.getValue();
+
+                //Update this to store as integer values, temporary fix
+                String calories = getCaloriesPicker.getText().toString();
+                String protein = getProteinPicker.getText().toString();
+                String fats = getFatPicker.getText().toString();
+                String carbs = getCarbsPicker.getText().toString();
+
+                //Test, remove when fixed
+                System.out.println(calories);
+                System.out.println(protein);
+                System.out.println(carbs);
+                System.out.println(fats);
             }
         });
     }
