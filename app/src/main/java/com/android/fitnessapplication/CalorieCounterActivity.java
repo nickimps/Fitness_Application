@@ -25,6 +25,17 @@ public class CalorieCounterActivity extends AppCompatActivity {
             }
         });
 
+        CardView updateParamsCardView = findViewById(R.id.updateParamsCardView);
+        updateParamsCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Go to register screen on click
+                Intent intent = new Intent(CalorieCounterActivity.this, UpdateParametersActivity.class);
+                startActivity((intent));
+            }
+        });
+
+
     }
 
 }
