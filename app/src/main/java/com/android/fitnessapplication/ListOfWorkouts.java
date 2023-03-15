@@ -84,7 +84,7 @@ public class ListOfWorkouts {
                     "Trap-Bar Deadlift", "6",
                     "Kettlebell Swing", "12",
                     "Bulgarian Split Squat", "8",
-                    "Good Morning", "6",s
+                    "Good Morning", "6",
                     "Cable Kickback", "12" }
     };
 
