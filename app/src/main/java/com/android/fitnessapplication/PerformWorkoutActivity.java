@@ -25,13 +25,10 @@ public class PerformWorkoutActivity extends AppCompatActivity {
     private static RecyclerView recyclerView;
     private static ArrayList<WorkoutTypeObject> exercise_name_list, rep_numbers_list, rep_string_type_list;
     public static View.OnClickListener myOnClickListener;
-
     private static int max_num_of_sets, current_set_num;
-
     View buttonGapView;
     Button pauseButton, startStopButton, logButton;
     TextView setsRemainingTextView;
-
     long chronoTimeWhenPaused;
     Boolean timerActive;
     Chronometer timerChronometer;
@@ -144,14 +141,13 @@ public class PerformWorkoutActivity extends AppCompatActivity {
                 timerChronometer.start();
                 timerActive = true;
 
-
                 buttonGapView.setVisibility(View.VISIBLE);
                 pauseButton.setVisibility(View.VISIBLE);
             } else {
                 startStopButton.setBackgroundColor(ContextCompat.getColor(this, R.color.start_green));
                 startStopButton.setText(getResources().getString(R.string.start));
 
-                // show just start button (don't' reset timer)
+                // show just start button (don't reset timer)
                 buttonGapView.setVisibility(View.GONE);
                 pauseButton.setVisibility(View.GONE);
 
@@ -159,6 +155,8 @@ public class PerformWorkoutActivity extends AppCompatActivity {
                 chronoTimeWhenPaused = 0;
                 timerChronometer.stop();
                 timerActive = false;
+
+                pauseButton.setText(getResources().getString(R.string.pause));
 
                 // Reset the set number
                 current_set_num = 0;
@@ -172,11 +170,13 @@ public class PerformWorkoutActivity extends AppCompatActivity {
                 chronoTimeWhenPaused = timerChronometer.getBase() - SystemClock.elapsedRealtime();
                 timerChronometer.stop();
                 timerActive = false;
+                pauseButton.setText(getResources().getString(R.string.resume));
             }
             else {
                 timerChronometer.setBase(SystemClock.elapsedRealtime() + chronoTimeWhenPaused);
                 timerChronometer.start();
                 timerActive = true;
+                pauseButton.setText(getResources().getString(R.string.pause));
             }
         });
 
