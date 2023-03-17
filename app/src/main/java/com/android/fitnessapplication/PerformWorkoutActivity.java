@@ -70,7 +70,13 @@ public class PerformWorkoutActivity extends AppCompatActivity {
                 }
             }
 
-            for (int i = 3; i < ListOfWorkouts.listOfWorkouts[0].length; i++) {
+            // Start Index is where the workouts begin in the listOfWorkoutsArray
+            int start_index = 4;
+            // Get the number of workouts in that workout so that it properly displays each one
+            int num_of_workouts = Integer.parseInt(ListOfWorkouts.listOfWorkouts[workout_index][3]) + start_index;
+
+            // Loop through each workout and add it to the list
+            for (int i = start_index; i < num_of_workouts; i++) {
                 exercise_name_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[workout_index][i], 0));
                 rep_numbers_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[workout_index][++i], 1));
             }
