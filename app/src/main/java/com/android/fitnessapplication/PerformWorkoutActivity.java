@@ -23,7 +23,7 @@ public class PerformWorkoutActivity extends AppCompatActivity {
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
-    private static ArrayList<WorkoutTypeObject> exercise_name_list, rep_numbers_list;
+    private static ArrayList<WorkoutTypeObject> exercise_name_list, rep_numbers_list, rep_string_type_list;
     public static View.OnClickListener myOnClickListener;
 
     private static int max_num_of_sets, current_set_num;
@@ -49,6 +49,7 @@ public class PerformWorkoutActivity extends AppCompatActivity {
 
         exercise_name_list = new ArrayList<>();
         rep_numbers_list = new ArrayList<>();
+        rep_string_type_list = new ArrayList<>();
         if (workoutName.equals("Custom Workout")) {
             max_num_of_sets = intent.getIntExtra("sets", 0);
 
@@ -58,6 +59,20 @@ public class PerformWorkoutActivity extends AppCompatActivity {
             for (int i = 0; i < string_exercise_list.size(); i++) {
                 exercise_name_list.add(new WorkoutTypeObject(string_exercise_list.get(i), 0));
                 rep_numbers_list.add(new WorkoutTypeObject(string_rep_list.get(i), 1));
+
+                // Check if we need to change reps to a different word to fit the rep type
+                if (string_exercise_list.get(i).equals("Dumbbell Curl")
+                        || string_exercise_list.get(i).equals("Hammer Curl")
+                        || string_exercise_list.get(i).equals("Lumberjack Swings")
+                        || string_exercise_list.get(i).equals("Concentration Curl"))
+                    rep_string_type_list.add(new WorkoutTypeObject("REPS EACH ARM", 2));
+                else if (string_rep_list.get(i).equals("AMRAP"))
+                    rep_string_type_list.add(new WorkoutTypeObject("", 2));
+                else if (string_exercise_list.get(i).equals("Planks")
+                        || string_exercise_list.get(i).equals("Farmers Carry"))
+                    rep_string_type_list.add(new WorkoutTypeObject("SEC", 2));
+                else
+                    rep_string_type_list.add(new WorkoutTypeObject("REPS", 2));
             }
         } else {
             max_num_of_sets = Integer.parseInt(ListOfWorkouts.listOfWorkouts[0][2]);
@@ -78,7 +93,25 @@ public class PerformWorkoutActivity extends AppCompatActivity {
             // Loop through each workout and add it to the list
             for (int i = start_index; i < num_of_workouts; i++) {
                 exercise_name_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[workout_index][i], 0));
-                rep_numbers_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[workout_index][++i], 1));
+                rep_numbers_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[workout_index][i + 1], 1));
+
+                System.out.println(ListOfWorkouts.listOfWorkouts[workout_index][i]);
+
+                // Check if we need to change reps to a different word to fit the rep type
+                if (ListOfWorkouts.listOfWorkouts[workout_index][i].equals("Dumbbell Curl")
+                        || ListOfWorkouts.listOfWorkouts[workout_index][i].equals("Hammer Curl")
+                        || ListOfWorkouts.listOfWorkouts[workout_index][i].equals("Lumberjack Swings")
+                        || ListOfWorkouts.listOfWorkouts[workout_index][i].equals("Concentration Curl"))
+                    rep_string_type_list.add(new WorkoutTypeObject("REPS EACH ARM", 2));
+                else if (ListOfWorkouts.listOfWorkouts[workout_index][i + 1].equals("AMRAP"))
+                    rep_string_type_list.add(new WorkoutTypeObject("", 2));
+                else if (ListOfWorkouts.listOfWorkouts[workout_index][i].equals("Planks")
+                        || ListOfWorkouts.listOfWorkouts[workout_index][i].equals("Farmers Carry"))
+                    rep_string_type_list.add(new WorkoutTypeObject("SEC", 2));
+                else
+                    rep_string_type_list.add(new WorkoutTypeObject("REPS", 2));
+
+                i++;
             }
         }
 
@@ -163,7 +196,7 @@ public class PerformWorkoutActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        adapter = new RecyclerAdapterPerformWorkout(exercise_name_list, rep_numbers_list);
+        adapter = new RecyclerAdapterPerformWorkout(exercise_name_list, rep_numbers_list, rep_string_type_list);
         recyclerView.setAdapter(adapter);
     }
 

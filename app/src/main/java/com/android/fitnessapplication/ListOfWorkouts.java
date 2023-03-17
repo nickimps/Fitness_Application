@@ -19,23 +19,23 @@ public class ListOfWorkouts {
                 "3",
                 "16",
                 "Military Press", "4-6",
-                "Push Press", "AMRAP",
+                "Push Press", "AMRAP",              //1
                 "Dumbbell Shoulder Press", "8-10",
                 "Lateral Raises", "12-15",
                 "Shrugs", "20",
                 "Cable Extensions", "12",
                 "Rear Delt Flies", "10-12",
-                "Farmers Carry", "30 sec" },
+                "Farmers Carry", "30" },        //sec
             { "Blasting Biceps",
                 "biceps",
                 "4",
                 "12",
-                "Dumbbell Curl", "12 Each Arm",
-                "Hammer Curl", "12 Each Arm",
+                "Dumbbell Curl", "12",     //Each Arm  -- REPS EACH ARM
+                "Hammer Curl", "12",       //Each Arm
                 "Preacher Curl", "12",
                 "Barbell Strict Curl", "8",
-                "Chin-Ups", "AMRAP",
-                "Concentration Curl", "12 Each Arm" },
+                "Chin-Ups", "AMRAP",                //1
+                "Concentration Curl", "12" }, //Each Arm
             { "Tearing-Up Triceps",
                 "triceps",
                 "4",
@@ -43,7 +43,7 @@ public class ListOfWorkouts {
                 "Tricep Push-down", "12",
                 "Overhead Tricep Extension", "15",
                 "Tricep Dumbbell Kickback", "8",
-                "Dips", "AMRAP",
+                "Dips", "AMRAP",                    //1
                 "Skull-crushers", "10",
                 "Push-Ups", "12" },
             { "Killer Core",
@@ -52,10 +52,10 @@ public class ListOfWorkouts {
                 "14",
                 "Sit-Ups", "12",
                 "Crunches", "20",
-                "Planks", "1 Minute",
+                "Planks", "60",                 //sec
                 "Hanging Leg Raises", "12",
                 "Superman", "10",
-                "Lumberjack Swings", "12 Each Side",
+                "Lumberjack Swings", "12", //Each Arm
                 "Russian Twist", "20" },
             { "Light-Em-Up Legs",
                 "legs",
@@ -78,7 +78,7 @@ public class ListOfWorkouts {
                 "Lat Pull-down", "10-12",
                 "Barbell Rows", "8",
                 "Cable Rows", "12",
-                "Pull-Ups", "AMRAP",
+                "Pull-Ups", "AMRAP",                //1
                 "T-bar Rows", "10" },
             { "Greedy Glutes",
                 "glutes",
