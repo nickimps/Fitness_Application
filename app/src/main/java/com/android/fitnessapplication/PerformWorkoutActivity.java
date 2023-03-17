@@ -92,8 +92,6 @@ public class PerformWorkoutActivity extends AppCompatActivity {
                 exercise_name_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[workout_index][i], 0));
                 rep_numbers_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[workout_index][i + 1], 1));
 
-                System.out.println(ListOfWorkouts.listOfWorkouts[workout_index][i]);
-
                 // Check if we need to change reps to a different word to fit the rep type
                 if (ListOfWorkouts.listOfWorkouts[workout_index][i].equals("Dumbbell Curl")
                         || ListOfWorkouts.listOfWorkouts[workout_index][i].equals("Hammer Curl")
