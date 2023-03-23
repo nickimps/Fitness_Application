@@ -118,7 +118,12 @@ public class PerformWorkoutActivity extends AppCompatActivity {
                 }
 
                 // Get the gif resource ID so we can dynamically give away gifs
-                int gif_id = getResources().getIdentifier(ListOfWorkouts.exercises[exercise_index][1], "drawable", getPackageName());
+                int gif_id;
+                if (exercise_index == -1)
+                    gif_id = getResources().getIdentifier("peter", "drawable", getPackageName());
+                else
+                    gif_id = getResources().getIdentifier(ListOfWorkouts.exercises[exercise_index][1], "drawable", getPackageName());
+
                 gif_ids_list.add(new WorkoutTypeObject(gif_id));
 
                 // Check if we need to change reps to a different word to fit the rep type

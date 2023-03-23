@@ -44,8 +44,10 @@ public class ChooseWorkoutsActivity extends AppCompatActivity {
         recyclerViewWorkoutType.setItemAnimator(new DefaultItemAnimator());
 
         workouts_list = new ArrayList<>();
-        for (int i = 0; i < ListOfWorkouts.listOfWorkouts.length; i++)
-            workouts_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[i][0]));
+        for (int i = 0; i < ListOfWorkouts.listOfWorkouts.length; i++) {
+            if (workoutType.equals(ListOfWorkouts.listOfWorkouts[i][1]))
+                workouts_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[i][0]));
+        }
 
         adapter = new RecyclerAdapterWorkoutType(workouts_list);
         recyclerViewWorkoutType.setAdapter(adapter);
