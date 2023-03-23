@@ -45,7 +45,6 @@
                 android:layout_below="@id/exerciseNameTextView"
                 android:gravity="center_vertical|center_horizontal"
                 android:textAlignment="gravity"
-                android:src="@drawable/peter"
                 />
 
 <!--            <TextView-->

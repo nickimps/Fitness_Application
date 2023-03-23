@@ -64,7 +64,7 @@ public class CreateWorkoutActivity extends AppCompatActivity {
 
         exercise_list = new ArrayList<>();
         for (int i = 0; i < ListOfWorkouts.exercises.length; i++)
-            exercise_list.add(new ExerciseTypeObject(ListOfWorkouts.exercises[i]));
+            exercise_list.add(new ExerciseTypeObject(ListOfWorkouts.exercises[i][0]));
 
         adapterSelected = new RecyclerAdapterExerciseSelected(selected_exercise_list);
         recyclerViewExerciseSelected.setAdapter(adapterSelected);
