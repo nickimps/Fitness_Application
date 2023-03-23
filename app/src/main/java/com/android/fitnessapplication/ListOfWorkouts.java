@@ -3,7 +3,7 @@ package com.android.fitnessapplication;
 public class ListOfWorkouts {
     static String[][] listOfWorkouts = {
             { "Explosive Chest",    //workout name
-                "chest",    // filter
+                "Chest",    // filter
                 "3",        // # sets
                 "16",       // number of indexes to loop, this number exercises times 2
                 "Barbell Bench Press", "6-8", //this point down are the exercise name and reps
@@ -15,19 +15,18 @@ public class ListOfWorkouts {
                 "Dips", "6-8",
                 "Push-Ups", "15-20" },
             { "Pumped Up Shoulders",
-                "shoulders",
+                "Shoulders",
                 "3",
-                "16",
+                "14",
                 "Military Press", "4-6",
                 "Push Press", "AMRAP",              //1
-                "Dumbbell Shoulder Press", "8-10",
                 "Lateral Raises", "12-15",
                 "Shrugs", "20",
                 "Cable Extensions", "12",
                 "Rear Delt Flies", "10-12",
                 "Farmers Carry", "30" },        //sec
             { "Blasting Biceps",
-                "biceps",
+                "Biceps",
                 "4",
                 "12",
                 "Dumbbell Curl", "12",     //Each Arm  -- REPS EACH ARM
@@ -37,17 +36,15 @@ public class ListOfWorkouts {
                 "Chin-Ups", "AMRAP",                //1
                 "Concentration Curl", "12" }, //Each Arm
             { "Tearing-Up Triceps",
-                "triceps",
+                "Triceps",
                 "4",
-                "12",
+                "8",
                 "Tricep Push-down", "12",
-                "Overhead Tricep Extension", "15",
-                "Tricep Dumbbell Kickback", "8",
                 "Dips", "AMRAP",                    //1
                 "Skull-crushers", "10",
                 "Push-Ups", "12" },
             { "Killer Core",
-                "abs & obliques",
+                "Abs & Obliques",
                 "3",
                 "14",
                 "Sit-Ups", "12",
@@ -58,7 +55,7 @@ public class ListOfWorkouts {
                 "Lumberjack Swings", "12", //Each Arm
                 "Russian Twist", "20" },
             { "Light-Em-Up Legs",
-                "legs",
+                "Legs",
                 "3",
                 "16",
                 "Back Squat", "8",
@@ -70,7 +67,7 @@ public class ListOfWorkouts {
                 "Lunges", "25",
                 "Leg Curls", "12" },
             { "Bursting Back",
-                "back",
+                "Back",
                 "4",
                 "14",
                 "Barbell Dead-lift", "6",
@@ -81,7 +78,7 @@ public class ListOfWorkouts {
                 "Pull-Ups", "AMRAP",                //1
                 "T-bar Rows", "10" },
             { "Greedy Glutes",
-                "glutes",
+                "Glutes",
                 "3",
                 "14",
                 "Hip Thrusts", "8",
@@ -93,12 +90,57 @@ public class ListOfWorkouts {
                 "Cable Kickback", "12" }
     };
 
-    static String[] exercises = {
-            "Push Down",
-            "Push Up",
-            "Pull Far Down",
-            "Push Far Up",
-            "Crab Walk",
-            "Plank"
+    static String[][] exercises = {
+            {"Back Squat", ""},
+            {"Barbell Bench Press", "barbell_bench_press"},
+            {"Barbell Dead-lift", ""},
+            {"Barbell Rows", ""},
+            {"Barbell Strict Curl", ""},
+            {"Bulgarian Split Squat", ""},
+            {"Cable Extensions", ""},
+            {"Cable Flies", "cable_flies"},
+            {"Cable Kickback", ""},
+            {"Cable Rows", ""},
+            {"Calf Raises", ""},
+            {"Concentration Curl", ""},
+            {"Chest Flies", "chest_flies"},
+            {"Chest Press", "chest_press"},
+            {"Chin-Ups", ""},
+            {"Cleans", ""},
+            {"Crunches", ""},
+            {"Dips", ""},
+            {"Dumbbell Bench Press", "dumbbell_bench_press"},
+            {"Dumbbell Curl", ""},
+            {"Farmers Carry", ""},
+            {"Front Squat", ""},
+            {"Good Morning", ""},
+            {"Hammer Curl", ""},
+            {"Hanging Leg Raises", ""},
+            {"Hip Thrusts", ""},
+            {"Incline Bench Press", "incline_bench_press"},
+            {"Kettle-bell Swing", ""},
+            {"Lateral Raises", ""},
+            {"Lat Pull-down", ""},
+            {"Leg Curls", ""},
+            {"Leg Extensions", ""},
+            {"Leg Press", ""},
+            {"Lumberjack Swings", ""},
+            {"Lunges", ""},
+            {"Military Press", ""},
+            {"Preacher Curl", ""},
+            {"Push Press", ""},
+            {"Push-Ups", "push_ups"},
+            {"Pull-Ups", ""},
+            {"Planks", ""},
+            {"Rear Delt Flies", ""},
+            {"Romanian Dead-lift", ""},
+            {"Russian Twist", ""},
+            {"Shrugs", ""},
+            {"Sit-Ups", ""},
+            {"Skull-crushers", ""},
+            {"Superman", ""},
+            {"T-bar Rows", ""},
+            {"Trap-Bar Dead-lift", ""},
+            {"Tricep Push-down", ""},
     };
 }

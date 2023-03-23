@@ -27,9 +27,9 @@
 
             <TextView
                 android:id="@+id/workout_name_card"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical|center_horizontal"
+                android:gravity="center_vertical"
                 android:textAlignment="gravity"
                 android:text="@string/workout_name"
                 android:fontFamily="@font/dm_sans"
@@ -41,7 +41,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
+                android:layout_alignEnd="@id/workout_name_card"
                 android:background="@drawable/circle_info_ripple"
                 android:fontFamily="@font/dm_sans"
                 android:gravity="center_vertical|center_horizontal"

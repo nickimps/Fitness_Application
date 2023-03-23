@@ -23,7 +23,7 @@ public class PerformWorkoutActivity extends AppCompatActivity {
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
-    private static ArrayList<WorkoutTypeObject> exercise_name_list, rep_numbers_list, rep_string_type_list;
+    private static ArrayList<WorkoutTypeObject> exercise_name_list, rep_numbers_list, rep_string_type_list, gif_ids_list;
     public static View.OnClickListener myOnClickListener;
     private static int max_num_of_sets, current_set_num;
     View buttonGapView;
@@ -47,6 +47,7 @@ public class PerformWorkoutActivity extends AppCompatActivity {
         exercise_name_list = new ArrayList<>();
         rep_numbers_list = new ArrayList<>();
         rep_string_type_list = new ArrayList<>();
+        gif_ids_list = new ArrayList<>();
         if (workoutName.equals("Custom Workout")) {
             max_num_of_sets = intent.getIntExtra("sets", 0);
 
@@ -56,6 +57,20 @@ public class PerformWorkoutActivity extends AppCompatActivity {
             for (int i = 0; i < string_exercise_list.size(); i++) {
                 exercise_name_list.add(new WorkoutTypeObject(string_exercise_list.get(i), 0));
                 rep_numbers_list.add(new WorkoutTypeObject(string_rep_list.get(i), 1));
+
+                // Get the index of the exercise to pass to get the id of the gif
+                int exercise_index = -1;
+                String ex_name = string_exercise_list.get(i);
+                for (int j = 0; j < ListOfWorkouts.exercises.length; j++){
+                    if (ex_name.equals(ListOfWorkouts.exercises[j][0])) {
+                        exercise_index = j;
+                        break;
+                    }
+                }
+
+                // Get the gif resource ID so we can dynamically give away gifs
+                int gif_id = getResources().getIdentifier(ListOfWorkouts.exercises[exercise_index][1], "drawable", getPackageName());
+                gif_ids_list.add(new WorkoutTypeObject(gif_id));
 
                 // Check if we need to change reps to a different word to fit the rep type
                 if (string_exercise_list.get(i).equals("Dumbbell Curl")
@@ -91,6 +106,25 @@ public class PerformWorkoutActivity extends AppCompatActivity {
             for (int i = start_index; i < num_of_workouts; i++) {
                 exercise_name_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[workout_index][i], 0));
                 rep_numbers_list.add(new WorkoutTypeObject(ListOfWorkouts.listOfWorkouts[workout_index][i + 1], 1));
+
+                // Get the index of the exercise to pass to get the id of the gif
+                int exercise_index = -1;
+                String ex_name = ListOfWorkouts.listOfWorkouts[workout_index][i];
+                for (int j = 0; j < ListOfWorkouts.exercises.length; j++){
+                    if (ex_name.equals(ListOfWorkouts.exercises[j][0])) {
+                        exercise_index = j;
+                        break;
+                    }
+                }
+
+                // Get the gif resource ID so we can dynamically give away gifs
+                int gif_id;
+                if (exercise_index == -1)
+                    gif_id = getResources().getIdentifier("peter", "drawable", getPackageName());
+                else
+                    gif_id = getResources().getIdentifier(ListOfWorkouts.exercises[exercise_index][1], "drawable", getPackageName());
+
+                gif_ids_list.add(new WorkoutTypeObject(gif_id));
 
                 // Check if we need to change reps to a different word to fit the rep type
                 if (ListOfWorkouts.listOfWorkouts[workout_index][i].equals("Dumbbell Curl")
@@ -194,7 +228,7 @@ public class PerformWorkoutActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        adapter = new RecyclerAdapterPerformWorkout(exercise_name_list, rep_numbers_list, rep_string_type_list);
+        adapter = new RecyclerAdapterPerformWorkout(exercise_name_list, rep_numbers_list, rep_string_type_list, gif_ids_list);
         recyclerView.setAdapter(adapter);
     }
 
