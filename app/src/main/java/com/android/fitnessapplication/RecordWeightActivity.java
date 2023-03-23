@@ -131,6 +131,8 @@ public class RecordWeightActivity extends AppCompatActivity {
 
             // UPDATE BMI IF NECESSARY?
         });
+
+
         //------------------------------------------------------------------------------------------
 
         // this is where the graph is going for weight history
@@ -182,7 +184,12 @@ public class RecordWeightActivity extends AppCompatActivity {
                 }
             }
         });
-
+        Button recordCurrentHeightButton = findViewById(R.id.recordWeightButton);
+        recordWeightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+    }
+});
     }
 
 }
