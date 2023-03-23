@@ -34,8 +34,6 @@ public class ChooseWorkoutsActivity extends AppCompatActivity {
         TextView workoutTypeHeaderTextView = findViewById(R.id.workoutTypeHeaderTextView);
         workoutTypeHeaderTextView.setText(workoutType);
 
-        //change workoutTypeHeaderTextView for passed in intent
-
         myOnClickListener = new MyOnClickListener(this);
 
         recyclerViewWorkoutType = (RecyclerView) findViewById(R.id.workoutTypeRecyclerView);

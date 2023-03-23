@@ -53,4 +53,6 @@
     <string name="fats">Fats</string>
     <string name="record_meal">Record Meal</string>
     <string name="record_your_meal">Record Your Meal</string>
+    <string name="daily_calorie_allowance">Daily Calorie Allowance</string>
+    <string name="update">Update</string>
 </resources>

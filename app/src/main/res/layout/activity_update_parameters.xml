@@ -32,20 +32,27 @@
         android:layout_height="55dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/UpdateParamsTextView"
-        app:errorEnabled="true"
         android:layout_marginTop="20dp"
+        app:boxStrokeColor="@color/text_yellow"
+        app:hintTextColor="@color/text_yellow"
+        android:textColorHint="@color/text_yellow"
+        android:outlineSpotShadowColor="@color/text_yellow"
+        app:counterTextColor="@color/text_yellow"
+        app:boxStrokeErrorColor="@color/stop_red"
+        app:helperTextTextColor="@color/text_yellow"
+        app:placeholderTextColor="@color/text_yellow"
+        app:errorEnabled="true"
         app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/DailyCalorieTextInputField"
+            android:id="@+id/recordCaloriesTextInputField"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans"
+            android:textColor="@color/text_yellow"
             android:inputType="textPersonName"
-            android:hint="Daily Calorie Allowance"
-            android:gravity="center_horizontal"
-            android:background="@color/background_light_grey"
+            android:hint="@string/daily_calorie_allowance"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,6 +64,14 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/DailyCalorieTextLayout"
         android:layout_marginTop="20dp"
+        app:boxStrokeColor="@color/text_yellow"
+        app:hintTextColor="@color/text_yellow"
+        android:textColorHint="@color/text_yellow"
+        android:outlineSpotShadowColor="@color/text_yellow"
+        app:counterTextColor="@color/text_yellow"
+        app:boxStrokeErrorColor="@color/stop_red"
+        app:helperTextTextColor="@color/text_yellow"
+        app:placeholderTextColor="@color/text_yellow"
         app:errorEnabled="true"
         app:endIconMode="clear_text">
 
@@ -66,10 +81,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans"
+            android:textColor="@color/text_yellow"
             android:inputType="textPersonName"
-            android:hint="Current Height"
-            android:gravity="center_horizontal"
-            android:background="@color/background_light_grey"
+            android:hint="@string/current_height"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,6 +95,14 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/heightTextLayout"
         android:layout_marginTop="20dp"
+        app:boxStrokeColor="@color/text_yellow"
+        app:hintTextColor="@color/text_yellow"
+        android:textColorHint="@color/text_yellow"
+        android:outlineSpotShadowColor="@color/text_yellow"
+        app:counterTextColor="@color/text_yellow"
+        app:boxStrokeErrorColor="@color/stop_red"
+        app:helperTextTextColor="@color/text_yellow"
+        app:placeholderTextColor="@color/text_yellow"
         app:errorEnabled="true"
         app:endIconMode="clear_text">
 
@@ -90,21 +112,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans"
+            android:textColor="@color/text_yellow"
             android:inputType="textPersonName"
-            android:hint="Goal Weight"
-            android:gravity="center_horizontal"
-            android:background="@color/background_light_grey"
+            android:hint="@string/goal_weight"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
         android:id="@+id/recordYourMealButton"
         android:layout_below="@id/goalTextLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="Update"
+        android:layout_marginTop="30dp"
+        android:text="@string/update"
         android:textStyle="bold"
         android:backgroundTint="@color/text_yellow"
         android:textSize="20sp"

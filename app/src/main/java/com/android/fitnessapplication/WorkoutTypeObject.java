@@ -1,10 +1,16 @@
 package com.android.fitnessapplication;
 
+import android.graphics.drawable.Drawable;
+
 public class WorkoutTypeObject {
     private String workout_name, exercise_name, num_reps, rep_string_type_name;
+    private int gif_id;
 
     public WorkoutTypeObject(String workout_name) {
         this.workout_name = workout_name;
+    }
+    public WorkoutTypeObject(int gif_id) {
+        this.gif_id = gif_id;
     }
 
     public WorkoutTypeObject(String info, int type) {
@@ -14,6 +20,13 @@ public class WorkoutTypeObject {
             this.num_reps = info;
         else if (type == 2)
             this.rep_string_type_name = info;
+    }
+
+    public int getGif_id() {
+        return gif_id;
+    }
+    public void setGif_id(int gif_id) {
+        this.gif_id = gif_id;
     }
 
     public String getExercise_name() {
