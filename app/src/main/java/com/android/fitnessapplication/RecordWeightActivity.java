@@ -1,8 +1,14 @@
 package com.android.fitnessapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +20,14 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -25,6 +39,7 @@ public class RecordWeightActivity extends AppCompatActivity {
     private NumberPicker newWeightNumberPicker, newWeightDecimalNumberPicker, goalWeightNumberPicker, goalWeightDecimalNumberPicker, heightNumberPicker;
     private int day, month, year;
     TextView currentBMI;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +58,6 @@ public class RecordWeightActivity extends AppCompatActivity {
             currentBMI.setText(bmiString);
         }
         */
-
 
         // For the record number pickers -----------------------------------------------------------
         newWeightNumberPicker = findViewById(R.id.newWeightNumberPicker);
@@ -138,6 +152,16 @@ public class RecordWeightActivity extends AppCompatActivity {
                     int day = Integer.parseInt(buttonDate.split("/")[1]);
                     int year = Integer.parseInt(buttonDate.split("/")[2]);
 
+                    //write to text file
+//                    try {
+//                        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("weight.txt", Context.MODE_PRIVATE));
+//                        outputStreamWriter.write("Text to write to the file");
+//                        outputStreamWriter.close();
+//                    }
+//                    catch (IOException e) {
+//                        Log.e("Exception", "File write failed: " + e.toString());
+//                    }
+
                     // I think it should override the value if the date already exists in the table
                     // USE THE DATE TO SAVE WITH THE NEW weightKG VALUE
 
@@ -160,4 +184,5 @@ public class RecordWeightActivity extends AppCompatActivity {
         });
 
     }
+
 }
