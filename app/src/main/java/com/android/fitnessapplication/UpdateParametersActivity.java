@@ -16,9 +16,6 @@ public class UpdateParametersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_parameters);
 
-
-
-
         Intent parameterIntent = getIntent();
         String calroie = parameterIntent.getStringExtra("calorie_text");
         TextView totalCal = findViewById(R.id.recordCaloriesTextInputField);

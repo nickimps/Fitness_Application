@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class CalorieCounterActivity extends AppCompatActivity {
 
@@ -17,18 +21,44 @@ public static int totalCarb = 0;
 public static int totalFat = 0;
 public static int totalProtein = 0;
 
-public static int remainingCalStart =2000;
+public static int remainingCalStart = 2000;
 public static int remainingCalMoving = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calorie_counter);
 
-        //need to get the value of totalCal from record meal screen along with fat,protein and others
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
 
+        //need to get the value of totalCal from record meal screen along with fat,protein and others
         Intent intent = getIntent();
         Intent intentMeal = getIntent();
         String calIntent = intent.getStringExtra("calorie");
+
+        System.out.println(calIntent);
+
+        //Reset remaining calroies at start of day
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-DDD-yyyy");
+        String currentDate = dateFormat.format(calendar.getTime());
+
+        System.out.println("Current Date" + currentDate);
+        String lastDate = sharedPreferences.getString("date", null);
+
+
+        if(currentDate.equals(lastDate)) {
+            System.out.println("SAME SAME");
+        }
+
+
+//        myEdit.putString("date", currentDate);
+//        myEdit.putString("allowedCals", calIntent);
+
+        String dailyLimit = sharedPreferences.getString("allowedCals", null);
+        System.out.println(lastDate);
+        System.out.println(dailyLimit);
 
         Bundle mealValues = intentMeal.getExtras();
         System.out.println(mealValues + "gamer");//for testing
