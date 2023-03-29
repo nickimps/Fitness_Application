@@ -21,7 +21,7 @@ public class UpdateParametersActivity extends AppCompatActivity {
 
         Intent parameterIntent = getIntent();
         String calroie = parameterIntent.getStringExtra("calorie_text");
-        TextView totalCal = findViewById(R.id.DailyCalorieTextInputField);
+        TextView totalCal = findViewById(R.id.recordCaloriesTextInputField);
         //TextView height = findViewById(R.id.heightTextInputField);
         //TextView goalWeight = findViewById(R.id.goalTextInputField);
 
