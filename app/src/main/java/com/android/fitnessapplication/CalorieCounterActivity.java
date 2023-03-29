@@ -35,7 +35,7 @@ public static int remainingCalMoving = 0;
         if (calIntent != null) {
             remainingCalStart = Integer.parseInt(calIntent);
         }
-
+//test
         if (totalCal != 0 && calIntent != null){
             TextView calrem = findViewById(R.id.calsRemainTextView);
             remainingCalMoving = remainingCalStart - totalCal;
