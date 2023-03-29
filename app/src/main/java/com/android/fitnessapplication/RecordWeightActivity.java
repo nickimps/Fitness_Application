@@ -10,6 +10,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -30,6 +34,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.stream.IntStream;
 
@@ -40,6 +45,8 @@ public class RecordWeightActivity extends AppCompatActivity {
     private int day, month, year;
     TextView currentBMI;
     Context context;
+
+    LineGraphSeries<DataPoint> weightHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,8 +143,12 @@ public class RecordWeightActivity extends AppCompatActivity {
         //------------------------------------------------------------------------------------------
 
         // this is where the graph is going for weight history
-        View graphView = findViewById(R.id.weightGraph);
-
+//        GraphView graphView = findViewById(R.id.weightGraph);
+//        weightHistory = new LineGraphSeries<>();
+//        for(int i = 0, i < length of recorded weights; i++) {
+//            weightHistory.appendData(new DataPoint(x, y), true, length of weight history);
+//        }
+//        graphView.addSeries(weightHistory);
 
         Button recordWeightButton = findViewById(R.id.recordWeightButton);
         recordWeightButton.setOnClickListener(new View.OnClickListener() {
@@ -150,6 +161,10 @@ public class RecordWeightActivity extends AppCompatActivity {
                 if (buttonDate.equals("Choose Date")) {
                     Toast.makeText(getApplicationContext(),"Please choose a date",Toast.LENGTH_SHORT).show();
                 } else {
+                    //Implementatioions for GraphView (To be added at a future date)
+                    Date date = calendar.getTime();
+                    System.out.println(date);
+
                     int month = Integer.parseInt(buttonDate.split("/")[0]);
                     int day = Integer.parseInt(buttonDate.split("/")[1]);
                     int year = Integer.parseInt(buttonDate.split("/")[2]);
@@ -181,6 +196,9 @@ public class RecordWeightActivity extends AppCompatActivity {
                     //Display BMI
                     String bmiString = String.format(Locale.getDefault(),"Current BMI: %.3f", BMI);
                     currentBMI.setText(bmiString);
+
+                    //Graph View Implementation
+
                 }
             }
         });
