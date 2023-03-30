@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -53,6 +54,13 @@ public class RecordWeightActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_weight);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE); // weightNumber, weightDecimal, heightNumber
+        int weightNumber = sharedPreferences.getInt("weightNumber", 0);
+        int weightDecimal = sharedPreferences.getInt("weightDecimal", 0);
+        int heightNumber = sharedPreferences.getInt("heightNumber", 0);
+
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+
         currentBMI = findViewById(R.id.currentBMITextView);
         /*
         double BMI = LOAD THE LAST SET BMI FROM THE SHARED PREF
@@ -69,14 +77,14 @@ public class RecordWeightActivity extends AppCompatActivity {
         // For the record number pickers -----------------------------------------------------------
         newWeightNumberPicker = findViewById(R.id.newWeightNumberPicker);
         newWeightNumberPicker.setMinValue(15);
-        newWeightNumberPicker.setMaxValue(200);
-        newWeightNumberPicker.setValue(98); // Would be cool to set this to the previous recorded weight
+        newWeightNumberPicker.setMaxValue(250);
+        newWeightNumberPicker.setValue(weightNumber);
         newWeightNumberPicker.setWrapSelectorWheel(false);
 
         newWeightDecimalNumberPicker = findViewById(R.id.newWeightDecimalNumberPicker);
         newWeightDecimalNumberPicker.setMinValue(0);
         newWeightDecimalNumberPicker.setMaxValue(9);
-        newWeightDecimalNumberPicker.setValue(0); // Would be cool to set this to the previous recorded weight
+        newWeightDecimalNumberPicker.setValue(weightDecimal);
         newWeightDecimalNumberPicker.setWrapSelectorWheel(true);
 
         // Clicking this button brings up a date picker and then changes the button to be the new date that was selected
@@ -100,13 +108,13 @@ public class RecordWeightActivity extends AppCompatActivity {
         goalWeightNumberPicker = findViewById(R.id.goalWeightNumberPicker);
         goalWeightNumberPicker.setMinValue(15);
         goalWeightNumberPicker.setMaxValue(200);
-        goalWeightNumberPicker.setValue(98);            // SET THIS TO THE SAVED GOAL WEIGHT
+        goalWeightNumberPicker.setValue(weightNumber);
         goalWeightNumberPicker.setWrapSelectorWheel(false);
 
         // Update things when the number is adjusted
         goalWeightNumberPicker.setOnValueChangedListener((numberPicker, i, i1) -> {
-            int goalWeightNumber = goalWeightNumberPicker.getValue();
-            // SAVE IN SHARED PREF HERE
+            myEdit.putInt("weightNumber", goalWeightNumberPicker.getValue());
+            myEdit.apply();
 
             // UPDATE THE GOAL LINE ON GRAPH ACCORDINGLY
         });
@@ -114,13 +122,13 @@ public class RecordWeightActivity extends AppCompatActivity {
         goalWeightDecimalNumberPicker = findViewById(R.id.goalWeightDecimalNumberPicker);
         goalWeightDecimalNumberPicker.setMinValue(0);
         goalWeightDecimalNumberPicker.setMaxValue(9);
-        goalWeightDecimalNumberPicker.setValue(0);      // SET THIS TO THE SAVED GOAL WEIGHT
+        goalWeightDecimalNumberPicker.setValue(weightDecimal);
         goalWeightDecimalNumberPicker.setWrapSelectorWheel(true);
 
         // Update things when the number is adjusted
         goalWeightDecimalNumberPicker.setOnValueChangedListener((numberPicker, i, i1) -> {
-            int goalWeightDecimalNumber = goalWeightDecimalNumberPicker.getValue();
-            // SAVE IN SHARED PREF HERE
+            myEdit.putInt("weightDecimal", goalWeightDecimalNumberPicker.getValue());
+            myEdit.apply();
 
             // UPDATE THE GOAL LINE ON GRAPH ACCORDINGLY
         });
@@ -128,19 +136,24 @@ public class RecordWeightActivity extends AppCompatActivity {
         heightNumberPicker = findViewById(R.id.heightNumberPicker);
         heightNumberPicker.setMinValue(30);
         heightNumberPicker.setMaxValue(285);
-        heightNumberPicker.setValue(195);               // SET THIS TO THE SAVED CURRENT HEIGHT OF THEM
+        heightNumberPicker.setValue(heightNumber);               // SET THIS TO THE SAVED CURRENT HEIGHT OF THEM
         heightNumberPicker.setWrapSelectorWheel(true);
 
         // Update things when the number is adjusted
         heightNumberPicker.setOnValueChangedListener((numberPicker, i, i1) -> {
-            int heightNumber = heightNumberPicker.getValue();
-            // SAVE IN SHARED PREF HERE
+            myEdit.putInt("heightNumber", heightNumberPicker.getValue());
+            myEdit.apply();
 
             // UPDATE BMI IF NECESSARY?
         });
-
-
         //------------------------------------------------------------------------------------------
+
+
+
+        /*
+
+
+         */
 
         // this is where the graph is going for weight history
 //        GraphView graphView = findViewById(R.id.weightGraph);
@@ -161,7 +174,7 @@ public class RecordWeightActivity extends AppCompatActivity {
                 if (buttonDate.equals("Choose Date")) {
                     Toast.makeText(getApplicationContext(),"Please choose a date",Toast.LENGTH_SHORT).show();
                 } else {
-                    //Implementatioions for GraphView (To be added at a future date)
+                    //Implementations for GraphView (To be added at a future date)
                     Date date = calendar.getTime();
                     System.out.println(date);
 
@@ -183,7 +196,7 @@ public class RecordWeightActivity extends AppCompatActivity {
                     // USE THE DATE TO SAVE WITH THE NEW weightKG VALUE
 
                     //Grab height (Shared Pref)
-                    double height = heightNumberPicker.getValue();
+                    double height = sharedPreferences.getInt("heightNumber", 0);
                     height = height / 100;
 
                     //Grab Newly Recorded Weight
@@ -202,12 +215,5 @@ public class RecordWeightActivity extends AppCompatActivity {
                 }
             }
         });
-        Button recordCurrentHeightButton = findViewById(R.id.recordWeightButton);
-        recordWeightButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
     }
-});
-    }
-
 }
