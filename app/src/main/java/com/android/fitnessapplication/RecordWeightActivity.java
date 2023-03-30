@@ -278,19 +278,22 @@ public class RecordWeightActivity extends AppCompatActivity {
      * @return Arraylist of the values
      */
     private ArrayList<String[]> readFromFile() {
-        ArrayList<String[]> past_weights = new ArrayList<>();
+        if (new File(RecordWeightActivity.this.getFilesDir() + "/past_weights.txt").exists()) {
+            ArrayList<String[]> past_weights = new ArrayList<>();
 
-        try {
-            File file = new File(RecordWeightActivity.this.getFilesDir(), "past_weights.txt");
-            Scanner scanner = new Scanner(file);
+            try {
+                File file = new File(RecordWeightActivity.this.getFilesDir(), "past_weights.txt");
+                Scanner scanner = new Scanner(file);
 
-            while(scanner.hasNextLine())
-                past_weights.add(scanner.nextLine().split(",")); // date = [0], weight = [1]
+                while(scanner.hasNextLine())
+                    past_weights.add(scanner.nextLine().split(",")); // date = [0], weight = [1]
 
-        } catch (Exception e) {
-            past_weights.add(new String[]{"", ""});
+            } catch (Exception e) {
+                past_weights.add(new String[]{"", ""});
+            }
+
+            return past_weights;
         }
-
-        return past_weights;
+        return null;
     }
 }
