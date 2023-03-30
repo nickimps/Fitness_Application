@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -316,7 +317,7 @@ public class RecordWeightActivity extends AppCompatActivity {
 
     public void plotPoints() throws IOException, ParseException {
 //        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-//        String date = sharedPreferences.getString("Date", null);
+//        String date = sharedPreferences.getString("Date", null);il
 //        int month = Integer.parseInt(date.split("/")[0]);
 //        ArrayList<String[]> getWeight = readFromFile();
 //        ArrayList<Integer> days = new ArrayList<Integer>();
@@ -332,7 +333,8 @@ public class RecordWeightActivity extends AppCompatActivity {
 //
 //        }
 
-        List<String> lines = Files.readAllLines(Paths.get("your_text_file.txt"));
+
+        List<String> lines = Files.readAllLines(Paths.get("past_weights.txt"));
 
 // Convert lines to DataPoint objects
         List<DataPoint> dataPoints = new ArrayList<>();
@@ -346,5 +348,6 @@ public class RecordWeightActivity extends AppCompatActivity {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints.toArray(new DataPoint[0]));
         GraphView graphView = findViewById(R.id.weightGraph);
         graphView.addSeries(series);
+        graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
     }
 }
