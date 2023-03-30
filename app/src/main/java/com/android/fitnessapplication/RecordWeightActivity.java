@@ -1,41 +1,18 @@
 package com.android.fitnessapplication;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.Manifest;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.textfield.TextInputEditText;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -51,7 +28,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class RecordWeightActivity extends AppCompatActivity {
     private Calendar calendar;
@@ -59,22 +35,13 @@ public class RecordWeightActivity extends AppCompatActivity {
     private NumberPicker newWeightNumberPicker, newWeightDecimalNumberPicker, goalWeightNumberPicker, goalWeightDecimalNumberPicker, heightNumberPicker;
     private int day, month, year;
     TextView currentBMI;
-    Context context;
-
-    LineGraphSeries<DataPoint> weightHistory;
+    
+    public List<DataPoint> dataPoints;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_weight);
-
-        try {
-            plotPoints();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
 
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE); // weightNumber, weightDecimal, heightNumber
         int weightNumber = sharedPreferences.getInt("weightNumber", 0);
@@ -83,6 +50,13 @@ public class RecordWeightActivity extends AppCompatActivity {
 
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
 
+        // Plot Graph
+        try {
+            plotPoints();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         //Display BMI
         float bmi_number = Float.parseFloat(sharedPreferences.getString("BMI", "0.000"));
         String bmi_string = String.format(Locale.getDefault(),"Current BMI: %.3f", bmi_number);
@@ -90,16 +64,18 @@ public class RecordWeightActivity extends AppCompatActivity {
         currentBMI.setText(bmi_string);
 
         // For the record number pickers -----------------------------------------------------------
+        String last_weight = String.valueOf(dataPoints.get(dataPoints.size() - 1).getY());
+
         newWeightNumberPicker = findViewById(R.id.newWeightNumberPicker);
         newWeightNumberPicker.setMinValue(15);
         newWeightNumberPicker.setMaxValue(250);
-        newWeightNumberPicker.setValue(weightNumber);
+        newWeightNumberPicker.setValue(Integer.parseInt(last_weight.split("\\.")[0]));
         newWeightNumberPicker.setWrapSelectorWheel(false);
 
         newWeightDecimalNumberPicker = findViewById(R.id.newWeightDecimalNumberPicker);
         newWeightDecimalNumberPicker.setMinValue(0);
         newWeightDecimalNumberPicker.setMaxValue(9);
-        newWeightDecimalNumberPicker.setValue(weightDecimal);
+        newWeightDecimalNumberPicker.setValue(Integer.parseInt(last_weight.split("\\.")[1]));
         newWeightDecimalNumberPicker.setWrapSelectorWheel(true);
 
         // Clicking this button brings up a date picker and then changes the button to be the new date that was selected
@@ -131,7 +107,11 @@ public class RecordWeightActivity extends AppCompatActivity {
             myEdit.putInt("weightNumber", goalWeightNumberPicker.getValue());
             myEdit.apply();
 
-            // UPDATE THE GOAL LINE ON GRAPH ACCORDINGLY
+            try {
+                plotPoints();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
 
         goalWeightDecimalNumberPicker = findViewById(R.id.goalWeightDecimalNumberPicker);
@@ -145,7 +125,11 @@ public class RecordWeightActivity extends AppCompatActivity {
             myEdit.putInt("weightDecimal", goalWeightDecimalNumberPicker.getValue());
             myEdit.apply();
 
-            // UPDATE THE GOAL LINE ON GRAPH ACCORDINGLY
+            try {
+                plotPoints();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
 
         heightNumberPicker = findViewById(R.id.heightNumberPicker);
@@ -156,28 +140,26 @@ public class RecordWeightActivity extends AppCompatActivity {
 
         // Update things when the number is adjusted
         heightNumberPicker.setOnValueChangedListener((numberPicker, i, i1) -> {
+            // Get height
+            double height = heightNumberPicker.getValue();
+            height = height / 100;
+
+            //Grab Last Recorded Weight
+            double weightKG = Float.parseFloat(String.valueOf(dataPoints.get(dataPoints.size() - 1).getY()));
+
+            //Calculate BMI
+            double BMI = weightKG / (height * height) ;
+
+            //Display BMI
+            String bmiString = String.format(Locale.getDefault(),"Current BMI: %.3f", BMI);
+            currentBMI.setText(bmiString);
+
+            myEdit.putString("BMI", String.valueOf(BMI));
             myEdit.putInt("heightNumber", heightNumberPicker.getValue());
             myEdit.apply();
-
-            // UPDATE BMI IF NECESSARY?
         });
         //------------------------------------------------------------------------------------------
 
-
-
-        /*
-
-            load last weight and adjust BMI on load
-
-         */
-
-        // this is where the graph is going for weight history
-//        GraphView graphView = findViewById(R.id.weightGraph);
-//        weightHistory = new LineGraphSeries<>();
-//        for(int i = 0, i < length of recorded weights; i++) {
-//            weightHistory.appendData(new DataPoint(x, y), true, length of weight history);
-//        }
-//        graphView.addSeries(weightHistory);
 
         Button recordWeightButton = findViewById(R.id.recordWeightButton);
         recordWeightButton.setOnClickListener(v -> {
@@ -219,15 +201,12 @@ public class RecordWeightActivity extends AppCompatActivity {
                 String[] data_to_write = {month + "/" + day + "/" + year, weightFromPicker};
                 saveLocationToFile(data_to_write);
 
+                //Graph View Implementation
                 try {
                     plotPoints();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                } catch (ParseException e) {
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                //Graph View Implementation
-
             }
         });
     }
@@ -246,12 +225,11 @@ public class RecordWeightActivity extends AppCompatActivity {
 
                 // Check if there is a dupe
                 int index_of_match = -1;
+                assert past_weights != null;
                 for (String[] date : past_weights) {
                     if (data[0].equals(date[0]))
                         index_of_match = past_weights.indexOf(date);
                 }
-
-
 
                 // Get path of the text file
                 Path path = Paths.get(RecordWeightActivity.this.getFilesDir() + "/past_weights.txt");
@@ -321,27 +299,47 @@ public class RecordWeightActivity extends AppCompatActivity {
         if (new File(RecordWeightActivity.this.getFilesDir() + "/past_weights.txt").exists()) {
             List<String> lines = Files.readAllLines(Paths.get(RecordWeightActivity.this.getFilesDir() + "/past_weights.txt"));
 
+            SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+            int weightNumber = sharedPreferences.getInt("weightNumber", 0);
+            int weightDecimal = sharedPreferences.getInt("weightDecimal", 0);
+
+            String goalWeight = weightNumber + "." + weightDecimal;
+
             // Convert lines to DataPoint objects
-            List<DataPoint> dataPoints = new ArrayList<>();
+            dataPoints = new ArrayList<>();
+            List<DataPoint> horizontalPoints = new ArrayList<>();
             for (String line : lines) {
                 String[] values = line.split(",");
                 long x = new SimpleDateFormat("MM/dd/yyyy").parse(values[0]).getTime();
                 double y = Double.parseDouble(values[1]);
                 dataPoints.add(new DataPoint(x, y));
+                horizontalPoints.add(new DataPoint(x, Double.parseDouble(goalWeight)));
             }
 
-            // Sort DataPoint objects by X values
-            Collections.sort(dataPoints, new Comparator<DataPoint>() {
-                @Override
-                public int compare(DataPoint dp1, DataPoint dp2) {
-                    return Long.compare((long) dp1.getX(), (long) dp2.getX());
-                }
-            });
+            if (dataPoints.size() > 1) {
+                // Sort DataPoint objects by X values
+                Collections.sort(dataPoints, new Comparator<DataPoint>() {
+                    @Override
+                    public int compare(DataPoint dp1, DataPoint dp2) {
+                        return Long.compare((long) dp1.getX(), (long) dp2.getX());
+                    }
+                });
+
+                Collections.sort(horizontalPoints, new Comparator<DataPoint>() {
+                    @Override
+                    public int compare(DataPoint dp1, DataPoint dp2) {
+                        return Long.compare((long) dp1.getX(), (long) dp2.getX());
+                    }
+                });
+            }
+
 
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints.toArray(new DataPoint[0]));
+            LineGraphSeries<DataPoint> seriesHoriz = new LineGraphSeries<>(horizontalPoints.toArray(new DataPoint[0]));
             GraphView graphView = findViewById(R.id.weightGraph);
             graphView.removeAllSeries();
             graphView.addSeries(series);
+            graphView.addSeries(seriesHoriz);
             graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
             graphView.getGridLabelRenderer().setNumHorizontalLabels(3);
             graphView.getGridLabelRenderer().setHumanRounding(false);
