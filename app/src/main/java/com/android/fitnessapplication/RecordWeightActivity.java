@@ -40,9 +40,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -62,7 +65,13 @@ public class RecordWeightActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_weight);
 
-        readFromFile();
+        try {
+            plotPoints();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
 
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE); // weightNumber, weightDecimal, heightNumber
         int weightNumber = sharedPreferences.getInt("weightNumber", 0);
@@ -207,6 +216,13 @@ public class RecordWeightActivity extends AppCompatActivity {
                 String[] data_to_write = {month + "/" + day + "/" + year, weightFromPicker};
                 saveLocationToFile(data_to_write);
 
+                try {
+                    plotPoints();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
                 //Graph View Implementation
 
             }
@@ -231,6 +247,7 @@ public class RecordWeightActivity extends AppCompatActivity {
                     if (data[0].equals(date[0]))
                         index_of_match = past_weights.indexOf(date);
                 }
+
 
 
                 // Get path of the text file
@@ -295,5 +312,39 @@ public class RecordWeightActivity extends AppCompatActivity {
             return past_weights;
         }
         return null;
+    }
+
+    public void plotPoints() throws IOException, ParseException {
+//        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+//        String date = sharedPreferences.getString("Date", null);
+//        int month = Integer.parseInt(date.split("/")[0]);
+//        ArrayList<String[]> getWeight = readFromFile();
+//        ArrayList<Integer> days = new ArrayList<Integer>();
+//
+//        LineGraphSeries<DataPoint> series = new LineGraphSeries<>();
+//        for(int i = 0; i < getWeight.size(); i++) {
+//            if(Integer.valueOf(getWeight.get(i)[0].split("/")[0]) == (month)) {
+//                days.add(Integer.valueOf(getWeight.get(i)[0].split("/")[1]));
+//            }
+//            float weight = Float.parseFloat(getWeight.get(i)[1]);
+//            DataPoint point = new DataPoint(i, )
+//
+//
+//        }
+
+        List<String> lines = Files.readAllLines(Paths.get("your_text_file.txt"));
+
+// Convert lines to DataPoint objects
+        List<DataPoint> dataPoints = new ArrayList<>();
+        for (String line : lines) {
+            String[] values = line.split(",");
+            long x = new SimpleDateFormat("yyyy-MM-dd").parse(values[0]).getTime();
+            double y = Double.parseDouble(values[1]);
+            dataPoints.add(new DataPoint(x, y));
+        }
+
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints.toArray(new DataPoint[0]));
+        GraphView graphView = findViewById(R.id.weightGraph);
+        graphView.addSeries(series);
     }
 }
