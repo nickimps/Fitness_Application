@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class CalorieCounterActivity extends AppCompatActivity {
 
@@ -21,7 +23,7 @@ public static int totalCarb = 0;
 public static int totalFat = 0;
 public static int totalProtein = 0;
 
-public static int remainingCalStart = 2000;
+public static int remainingCalStart;
 public static int remainingCalMoving = 0;
 
     @Override
@@ -32,6 +34,8 @@ public static int remainingCalMoving = 0;
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
 
+        remainingCalStart = Integer.parseInt(sharedPreferences.getString("caloriesRemaining", String.valueOf(2200)));
+
         //need to get the value of totalCal from record meal screen along with fat,protein and others
         Intent intent = getIntent();
         Intent intentMeal = getIntent();
@@ -40,24 +44,22 @@ public static int remainingCalMoving = 0;
         System.out.println(calIntent);
 
         //Reset remaining calroies at start of day
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-DDD-yyyy");
-        String currentDate = dateFormat.format(calendar.getTime());
+        Date c = Calendar.getInstance().getTime();
 
-        System.out.println("Current Date" + currentDate);
-        String lastDate = sharedPreferences.getString("date", null);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
+        String formattedDate = df.format(c);
 
+        String savedDate = sharedPreferences.getString("date", null);
 
-        if(currentDate.equals(lastDate)) {
+        if(formattedDate.equals(savedDate)) {
             System.out.println("SAME SAME");
         }
-
 
 //        myEdit.putString("date", currentDate);
 //        myEdit.putString("allowedCals", calIntent);
 
         String dailyLimit = sharedPreferences.getString("allowedCals", null);
-        System.out.println(lastDate);
+        //System.out.println(lastDate);
         System.out.println(dailyLimit);
 
         Bundle mealValues = intentMeal.getExtras();
@@ -65,6 +67,8 @@ public static int remainingCalMoving = 0;
         if (calIntent != null) {
             remainingCalStart = Integer.parseInt(calIntent);
         }
+
+
 //test
         if (totalCal != 0 && calIntent != null){
             TextView calrem = findViewById(R.id.calsRemainTextView);
