@@ -33,10 +33,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class RecordWeightActivity extends AppCompatActivity {
@@ -53,6 +55,8 @@ public class RecordWeightActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_weight);
+
+        readFromFile();
 
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE); // weightNumber, weightDecimal, heightNumber
         int weightNumber = sharedPreferences.getInt("weightNumber", 0);
@@ -152,6 +156,7 @@ public class RecordWeightActivity extends AppCompatActivity {
 
         /*
 
+            load last weight and adjust BMI on load
 
          */
 
@@ -164,56 +169,107 @@ public class RecordWeightActivity extends AppCompatActivity {
 //        graphView.addSeries(weightHistory);
 
         Button recordWeightButton = findViewById(R.id.recordWeightButton);
-        recordWeightButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Get date and log it.
-                String buttonDate = String.valueOf(chooseDateButton.getText());
+        recordWeightButton.setOnClickListener(v -> {
+            //Get date and log it.
+            String buttonDate = String.valueOf(chooseDateButton.getText());
 
-                //Check if a date is chosen before recording activity
-                if (buttonDate.equals("Choose Date")) {
-                    Toast.makeText(getApplicationContext(),"Please choose a date",Toast.LENGTH_SHORT).show();
-                } else {
-                    //Implementations for GraphView (To be added at a future date)
-                    Date date = calendar.getTime();
-                    System.out.println(date);
+            //Check if a date is chosen before recording activity
+            if (buttonDate.equals("Choose Date")) {
+                Toast.makeText(getApplicationContext(),"Please choose a date",Toast.LENGTH_SHORT).show();
+            } else {
+                //Implementations for GraphView (To be added at a future date)
+                Date date = calendar.getTime();
+                System.out.println(date);
 
-                    int month = Integer.parseInt(buttonDate.split("/")[0]);
-                    int day = Integer.parseInt(buttonDate.split("/")[1]);
-                    int year = Integer.parseInt(buttonDate.split("/")[2]);
+                int month = Integer.parseInt(buttonDate.split("/")[0]);
+                int day = Integer.parseInt(buttonDate.split("/")[1]);
+                int year = Integer.parseInt(buttonDate.split("/")[2]);
 
-                    //write to text file
-//                    try {
-//                        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("weight.txt", Context.MODE_PRIVATE));
-//                        outputStreamWriter.write("Text to write to the file");
-//                        outputStreamWriter.close();
-//                    }
-//                    catch (IOException e) {
-//                        Log.e("Exception", "File write failed: " + e.toString());
-//                    }
+                //write to text file
+                String data_to_write = ""; // FORMAT: DATE,WEIGHT\nDATE,WEIGHT\nDATE,WEIGHT\n...
+                saveLocationToFile(data_to_write);
 
-                    // I think it should override the value if the date already exists in the table
-                    // USE THE DATE TO SAVE WITH THE NEW weightKG VALUE
+                // I think it should override the value if the date already exists in the table
+                // USE THE DATE TO SAVE WITH THE NEW weightKG VALUE
 
-                    //Grab height (Shared Pref)
-                    double height = sharedPreferences.getInt("heightNumber", 0);
-                    height = height / 100;
+                //Grab height (Shared Pref)
+                double height = sharedPreferences.getInt("heightNumber", 0);
+                height = height / 100;
 
-                    //Grab Newly Recorded Weight
-                    String weightFromPicker = newWeightNumberPicker.getValue() + "." + newWeightDecimalNumberPicker.getValue();
-                    double weightKG = Float.parseFloat(weightFromPicker);
+                //Grab Newly Recorded Weight
+                String weightFromPicker = newWeightNumberPicker.getValue() + "." + newWeightDecimalNumberPicker.getValue();
+                double weightKG = Float.parseFloat(weightFromPicker);
 
-                    //Calculate BMI
-                    double BMI = weightKG / (height * height) ;
+                //Calculate BMI
+                double BMI = weightKG / (height * height) ;
 
-                    //Display BMI
-                    String bmiString = String.format(Locale.getDefault(),"Current BMI: %.3f", BMI);
-                    currentBMI.setText(bmiString);
+                //Display BMI
+                String bmiString = String.format(Locale.getDefault(),"Current BMI: %.3f", BMI);
+                currentBMI.setText(bmiString);
 
-                    //Graph View Implementation
+                //Graph View Implementation
 
-                }
             }
         });
+    }
+
+    /**
+     * Saves a file for the data
+     *
+     * @param data The data to be saved to the file
+     */
+    private void saveLocationToFile(String data) {
+        try {
+            /*    Saves to: /data/data/com.android.fitnessapplication/files/Weight_Records/past_weights    */
+
+            // Creates directory to store data into called Location_Data
+            File file = new File(RecordWeightActivity.this.getFilesDir(), "Weight_Records");
+
+            boolean dirMade;
+            if (!file.exists())
+                dirMade = file.mkdir();
+            else
+                dirMade = true;
+
+            if (dirMade) {
+                // Create the file to be saved with the timestamp as the file name
+                File fileToSave = new File(file, "past_weights.txt");
+
+                // Perform saving operations
+                FileWriter writer = new FileWriter(fileToSave);
+                writer.append(data);
+                writer.flush();
+                writer.close();
+
+                // Success Message
+                Toast.makeText(RecordWeightActivity.this, "Weight Saved", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Log.e("Exception", "File write failed: " + e);
+            Toast.makeText(RecordWeightActivity.this, "Failed to save.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    /**
+     * Reads the text file from the location in the phone and parses the return accordingly
+     *
+     * @return Arraylist of the values
+     */
+    private ArrayList<String[]> readFromFile() {
+        ArrayList<String[]> past_weights = new ArrayList<>();
+
+        try {
+            File file = new File(RecordWeightActivity.this.getFilesDir(), "Weight_Records/past_weights.txt");
+            Scanner scanner = new Scanner(file);
+
+            while(scanner.hasNextLine())
+                past_weights.add(scanner.nextLine().split(",")); // date = [0], weight = [1]
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return past_weights;
     }
 }
