@@ -95,12 +95,12 @@ public class RecordWeightActivity extends AppCompatActivity {
         chooseDateButton.setOnClickListener(view -> {
             calendar = Calendar.getInstance();
             day = calendar.get(Calendar.DAY_OF_MONTH);
-            month = calendar.get(Calendar.MONTH) + 1;
+            month = calendar.get(Calendar.MONTH);
             year = calendar.get(Calendar.YEAR);
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     RecordWeightActivity.this,
-                    (datePicker, year, month, day) -> chooseDateButton.setText(String.format(Locale.getDefault(),month + "/" + day + "/" + year)),
+                    (datePicker, year, month, day) -> chooseDateButton.setText(String.format(Locale.getDefault(),(month + 1) + "/" + day + "/" + year)),
                     year, month, day
             );
             datePickerDialog.show();
@@ -184,7 +184,6 @@ public class RecordWeightActivity extends AppCompatActivity {
                 int day = Integer.parseInt(buttonDate.split("/")[1]);
                 int year = Integer.parseInt(buttonDate.split("/")[2]);
 
-
                 //Grab height (Shared Pref)
                 double height = sharedPreferences.getInt("heightNumber", 0);
                 height = height / 100;
@@ -221,40 +220,51 @@ public class RecordWeightActivity extends AppCompatActivity {
      */
     private void saveLocationToFile(String[] data) {
         try {
-            // Load in the file to check for duplicate dates
-            ArrayList<String[]> past_weights = readFromFile();
+            // Check if the file exists
+            if (new File(RecordWeightActivity.this.getFilesDir() + "/past_weights.txt").exists()) {
+                // Load in the file to check for duplicate dates
+                ArrayList<String[]> past_weights = readFromFile();
 
-            // Check if there is a dupe
-            int index_of_match = -1;
-            for (String[] date : past_weights) {
-                if (data[0].equals(date[0]))
-                    index_of_match = past_weights.indexOf(date);
-            }
-
-            // Get path of the text file
-            Path path = Paths.get(RecordWeightActivity.this.getFilesDir() + "/Weight_Records/past_weights.txt");
-
-            // If there was no match, then append, otherwise, need to adjust text file
-            if (index_of_match == -1) {
-                String save_string = data[0] + "," + data[1] + "\n";
-                Files.write(path, save_string.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-            } else {
-                // Remove the dupe and update with the new entry
-                past_weights.remove(index_of_match);
-                past_weights.add(data);
-
-                // We proceed in re-writing each line, the first time through we want to erase the file and then subsequent times we will append
-                boolean truncate = true;
+                // Check if there is a dupe
+                int index_of_match = -1;
                 for (String[] date : past_weights) {
-                    String save_string = date[0] + "," + date[1] + "\n";
+                    if (data[0].equals(date[0]))
+                        index_of_match = past_weights.indexOf(date);
+                }
 
-                    if (truncate) {
-                        Files.write(path, save_string.getBytes(StandardCharsets.UTF_8), StandardOpenOption.WRITE, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-                        truncate = false;
-                    } else {
-                        Files.write(path, save_string.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+
+                // Get path of the text file
+                Path path = Paths.get(RecordWeightActivity.this.getFilesDir() + "/past_weights.txt");
+
+                // If there was no match, then append, otherwise, need to adjust text file
+                if (index_of_match == -1) {
+                    String save_string = data[0] + "," + data[1] + "\n";
+                    Files.write(path, save_string.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+                } else {
+                    // Remove the dupe and update with the new entry
+                    past_weights.remove(index_of_match);
+                    past_weights.add(data);
+
+                    // We proceed in re-writing each line, the first time through we want to erase the file and then subsequent times we will append
+                    boolean truncate = true;
+                    for (String[] date : past_weights) {
+                        String save_string = date[0] + "," + date[1] + "\n";
+
+                        if (truncate) {
+                            Files.write(path, save_string.getBytes(StandardCharsets.UTF_8), StandardOpenOption.WRITE, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+                            truncate = false;
+                        } else {
+                            Files.write(path, save_string.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+                        }
                     }
                 }
+            } else {
+                File create_file = new File(RecordWeightActivity.this.getFilesDir(), "past_weights.txt");
+                create_file.createNewFile();
+                // Get path of the text file
+                Path path = Paths.get(RecordWeightActivity.this.getFilesDir() + "/past_weights.txt");
+                String save_string = data[0] + "," + data[1] + "\n";
+                Files.write(path, save_string.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -271,7 +281,7 @@ public class RecordWeightActivity extends AppCompatActivity {
         ArrayList<String[]> past_weights = new ArrayList<>();
 
         try {
-            File file = new File(RecordWeightActivity.this.getFilesDir(), "Weight_Records/past_weights.txt");
+            File file = new File(RecordWeightActivity.this.getFilesDir(), "past_weights.txt");
             Scanner scanner = new Scanner(file);
 
             while(scanner.hasNextLine())
