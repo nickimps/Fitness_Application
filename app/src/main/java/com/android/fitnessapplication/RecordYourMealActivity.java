@@ -25,16 +25,12 @@ public class RecordYourMealActivity extends AppCompatActivity {
         Bundle extra = new Bundle();
         String mealCal = mealIntent.getStringExtra("mealcalorie");
         TextView cals = findViewById(R.id.recordCaloriesTextInputField);
-        cals.setText("0");
         String mealprotein = mealIntent.getStringExtra("mealprotein");
         TextView protein = findViewById(R.id.recordProteinTextInputField);
-        protein.setText("0");
         String mealfat = mealIntent.getStringExtra("mealfat");
         TextView fat = findViewById(R.id.recordFatsTextInputField);
-        fat.setText("0");
         String mealcarb = mealIntent.getStringExtra("mealcarbs");
         TextView carb = findViewById(R.id.recordCarbsTextInputField);
-        carb.setText("0");
 
 
         Button recordMealButton = findViewById(R.id.recordYourMealButton);
