@@ -45,6 +45,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -316,38 +318,36 @@ public class RecordWeightActivity extends AppCompatActivity {
     }
 
     public void plotPoints() throws IOException, ParseException {
-//        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-//        String date = sharedPreferences.getString("Date", null);il
-//        int month = Integer.parseInt(date.split("/")[0]);
-//        ArrayList<String[]> getWeight = readFromFile();
-//        ArrayList<Integer> days = new ArrayList<Integer>();
-//
-//        LineGraphSeries<DataPoint> series = new LineGraphSeries<>();
-//        for(int i = 0; i < getWeight.size(); i++) {
-//            if(Integer.valueOf(getWeight.get(i)[0].split("/")[0]) == (month)) {
-//                days.add(Integer.valueOf(getWeight.get(i)[0].split("/")[1]));
-//            }
-//            float weight = Float.parseFloat(getWeight.get(i)[1]);
-//            DataPoint point = new DataPoint(i, )
-//
-//
-//        }
+        if (new File(RecordWeightActivity.this.getFilesDir() + "/past_weights.txt").exists()) {
+            List<String> lines = Files.readAllLines(Paths.get(RecordWeightActivity.this.getFilesDir() + "/past_weights.txt"));
 
+            // Convert lines to DataPoint objects
+            List<DataPoint> dataPoints = new ArrayList<>();
+            for (String line : lines) {
+                String[] values = line.split(",");
+                long x = new SimpleDateFormat("MM/dd/yyyy").parse(values[0]).getTime();
+                double y = Double.parseDouble(values[1]);
+                dataPoints.add(new DataPoint(x, y));
+            }
 
-        List<String> lines = Files.readAllLines(Paths.get("past_weights.txt"));
+            // Sort DataPoint objects by X values
+            Collections.sort(dataPoints, new Comparator<DataPoint>() {
+                @Override
+                public int compare(DataPoint dp1, DataPoint dp2) {
+                    return Long.compare((long) dp1.getX(), (long) dp2.getX());
+                }
+            });
 
-// Convert lines to DataPoint objects
-        List<DataPoint> dataPoints = new ArrayList<>();
-        for (String line : lines) {
-            String[] values = line.split(",");
-            long x = new SimpleDateFormat("yyyy-MM-dd").parse(values[0]).getTime();
-            double y = Double.parseDouble(values[1]);
-            dataPoints.add(new DataPoint(x, y));
+            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints.toArray(new DataPoint[0]));
+            GraphView graphView = findViewById(R.id.weightGraph);
+            graphView.removeAllSeries();
+            graphView.addSeries(series);
+            graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
+            graphView.getGridLabelRenderer().setNumHorizontalLabels(3);
+            graphView.getGridLabelRenderer().setHumanRounding(false);
+            graphView.getViewport().setMinX(dataPoints.get(0).getX());
+            graphView.getViewport().setMaxX(dataPoints.get(dataPoints.size() - 1).getX());
+            graphView.getViewport().setXAxisBoundsManual(true);
         }
-
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints.toArray(new DataPoint[0]));
-        GraphView graphView = findViewById(R.id.weightGraph);
-        graphView.addSeries(series);
-        graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
     }
 }
