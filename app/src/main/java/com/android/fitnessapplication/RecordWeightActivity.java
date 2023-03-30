@@ -348,6 +348,9 @@ public class RecordWeightActivity extends AppCompatActivity {
             graphView.getViewport().setMinX(dataPoints.get(0).getX());
             graphView.getViewport().setMaxX(dataPoints.get(dataPoints.size() - 1).getX());
             graphView.getViewport().setXAxisBoundsManual(true);
+        } else {
+            File create_file = new File(RecordWeightActivity.this.getFilesDir(), "past_weights.txt");
+            create_file.createNewFile();
         }
     }
 }
