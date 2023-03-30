@@ -2,6 +2,7 @@ package com.android.fitnessapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.NumberPicker;
@@ -268,8 +269,6 @@ public class RecordWeightActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
     /**
      * Reads the text file from the location in the phone and parses the return accordingly
      *
@@ -340,12 +339,18 @@ public class RecordWeightActivity extends AppCompatActivity {
             graphView.removeAllSeries();
             graphView.addSeries(series);
             graphView.addSeries(seriesHoriz);
+            series.setColor(0xFFF4D800);
+            seriesHoriz.setColor(Color.GREEN);
+            series.setTitle("Current Weight");
+            seriesHoriz.setTitle("Goal Weight");
             graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
-            graphView.getGridLabelRenderer().setNumHorizontalLabels(3);
+            graphView.getGridLabelRenderer().setNumHorizontalLabels(4);
+            graphView.getGridLabelRenderer().setNumVerticalLabels(6);
             graphView.getGridLabelRenderer().setHumanRounding(false);
             graphView.getViewport().setMinX(dataPoints.get(0).getX());
             graphView.getViewport().setMaxX(dataPoints.get(dataPoints.size() - 1).getX());
             graphView.getViewport().setXAxisBoundsManual(true);
+            graphView.getLegendRenderer().setVisible(true);
         }
     }
 }
