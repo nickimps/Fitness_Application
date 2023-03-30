@@ -52,26 +52,6 @@ public class RecordYourMealActivity extends AppCompatActivity {
                 extra.putString("mealcarb", carbVar);
                 intentMeal.putExtras(extra);
                 startActivity((intentMeal));
-
-                /*
-                System.out.println(calsVar);//for testing
-
-                String proVar = String.valueOf(protein.getText());
-                Intent intentprotein = new Intent(RecordYourMealActivity.this, CalorieCounterActivity.class);
-                intentprotein.putExtra("protein", proVar);
-                startActivity((intentprotein));
-
-                String fatVar = String.valueOf(fat.getText());
-                Intent intentfat = new Intent(RecordYourMealActivity.this, CalorieCounterActivity.class);
-                intentfat.putExtra("fat", fatVar);
-                startActivity((intentfat));
-                System.out.println(fatVar);//for testing
-
-                String carbVar = String.valueOf(carb.getText());
-                Intent intentcarb = new Intent(RecordYourMealActivity.this, CalorieCounterActivity.class);
-                intentcarb.putExtra("carb", carbVar);
-                startActivity((intentcarb));
-*/
             }
         });
     }
