@@ -26,6 +26,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -34,6 +35,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -65,18 +71,11 @@ public class RecordWeightActivity extends AppCompatActivity {
 
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
 
+        //Display BMI
+        float bmi_number = Float.parseFloat(sharedPreferences.getString("BMI", "0.000"));
+        String bmi_string = String.format(Locale.getDefault(),"Current BMI: %.3f", bmi_number);
         currentBMI = findViewById(R.id.currentBMITextView);
-        /*
-        double BMI = LOAD THE LAST SET BMI FROM THE SHARED PREF
-
-        if (no BMI value saved in SharedPref) {
-            currentBMI.setText("No BMI");
-        } else {
-            //Display BMI
-            String bmiString = String.format(Locale.getDefault(),"Current BMI: %.3f", BMI);
-            currentBMI.setText(bmiString);
-        }
-        */
+        currentBMI.setText(bmi_string);
 
         // For the record number pickers -----------------------------------------------------------
         newWeightNumberPicker = findViewById(R.id.newWeightNumberPicker);
@@ -96,7 +95,7 @@ public class RecordWeightActivity extends AppCompatActivity {
         chooseDateButton.setOnClickListener(view -> {
             calendar = Calendar.getInstance();
             day = calendar.get(Calendar.DAY_OF_MONTH);
-            month = calendar.get(Calendar.MONTH);
+            month = calendar.get(Calendar.MONTH) + 1;
             year = calendar.get(Calendar.YEAR);
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(
@@ -185,12 +184,6 @@ public class RecordWeightActivity extends AppCompatActivity {
                 int day = Integer.parseInt(buttonDate.split("/")[1]);
                 int year = Integer.parseInt(buttonDate.split("/")[2]);
 
-                //write to text file
-                String data_to_write = ""; // FORMAT: DATE,WEIGHT\nDATE,WEIGHT\nDATE,WEIGHT\n...
-                saveLocationToFile(data_to_write);
-
-                // I think it should override the value if the date already exists in the table
-                // USE THE DATE TO SAVE WITH THE NEW weightKG VALUE
 
                 //Grab height (Shared Pref)
                 double height = sharedPreferences.getInt("heightNumber", 0);
@@ -207,6 +200,14 @@ public class RecordWeightActivity extends AppCompatActivity {
                 String bmiString = String.format(Locale.getDefault(),"Current BMI: %.3f", BMI);
                 currentBMI.setText(bmiString);
 
+                // Save BMI to shared pref
+                myEdit.putString("BMI", String.valueOf(BMI));
+                myEdit.apply();
+
+                //write to text file
+                String[] data_to_write = {month + "/" + day + "/" + year, weightFromPicker};
+                saveLocationToFile(data_to_write);
+
                 //Graph View Implementation
 
             }
@@ -218,35 +219,45 @@ public class RecordWeightActivity extends AppCompatActivity {
      *
      * @param data The data to be saved to the file
      */
-    private void saveLocationToFile(String data) {
+    private void saveLocationToFile(String[] data) {
         try {
-            /*    Saves to: /data/data/com.android.fitnessapplication/files/Weight_Records/past_weights    */
+            // Load in the file to check for duplicate dates
+            ArrayList<String[]> past_weights = readFromFile();
 
-            // Creates directory to store data into called Location_Data
-            File file = new File(RecordWeightActivity.this.getFilesDir(), "Weight_Records");
+            // Check if there is a dupe
+            int index_of_match = -1;
+            for (String[] date : past_weights) {
+                if (data[0].equals(date[0]))
+                    index_of_match = past_weights.indexOf(date);
+            }
 
-            boolean dirMade;
-            if (!file.exists())
-                dirMade = file.mkdir();
-            else
-                dirMade = true;
+            // Get path of the text file
+            Path path = Paths.get(RecordWeightActivity.this.getFilesDir() + "/Weight_Records/past_weights.txt");
 
-            if (dirMade) {
-                // Create the file to be saved with the timestamp as the file name
-                File fileToSave = new File(file, "past_weights.txt");
+            // If there was no match, then append, otherwise, need to adjust text file
+            if (index_of_match == -1) {
+                String save_string = data[0] + "," + data[1] + "\n";
+                Files.write(path, save_string.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+            } else {
+                // Remove the dupe and update with the new entry
+                past_weights.remove(index_of_match);
+                past_weights.add(data);
 
-                // Perform saving operations
-                FileWriter writer = new FileWriter(fileToSave);
-                writer.append(data);
-                writer.flush();
-                writer.close();
+                // We proceed in re-writing each line, the first time through we want to erase the file and then subsequent times we will append
+                boolean truncate = true;
+                for (String[] date : past_weights) {
+                    String save_string = date[0] + "," + date[1] + "\n";
 
-                // Success Message
-                Toast.makeText(RecordWeightActivity.this, "Weight Saved", Toast.LENGTH_SHORT).show();
+                    if (truncate) {
+                        Files.write(path, save_string.getBytes(StandardCharsets.UTF_8), StandardOpenOption.WRITE, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+                        truncate = false;
+                    } else {
+                        Files.write(path, save_string.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+                    }
+                }
             }
         } catch (Exception e) {
-            Log.e("Exception", "File write failed: " + e);
-            Toast.makeText(RecordWeightActivity.this, "Failed to save.", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         }
     }
 
@@ -267,7 +278,7 @@ public class RecordWeightActivity extends AppCompatActivity {
                 past_weights.add(scanner.nextLine().split(",")); // date = [0], weight = [1]
 
         } catch (Exception e) {
-            e.printStackTrace();
+            past_weights.add(new String[]{"", ""});
         }
 
         return past_weights;
