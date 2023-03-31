@@ -59,14 +59,18 @@ public class RecordWeightActivity extends AppCompatActivity {
         }
 
         //Display BMI
-        float bmi_number = Float.parseFloat(sharedPreferences.getString("BMI", "0.000"));
+        float bmi_number = 0.0f;
+        String last_weight = weightNumber + "." + weightDecimal;
+        if (dataPoints != null) {
+            last_weight = String.valueOf(dataPoints.get(dataPoints.size() - 1).getY());
+            bmi_number = Float.parseFloat(sharedPreferences.getString("BMI", "0.000"));
+        }
+
         String bmi_string = String.format(Locale.getDefault(),"Current BMI: %.3f", bmi_number);
         currentBMI = findViewById(R.id.currentBMITextView);
         currentBMI.setText(bmi_string);
 
         // For the record number pickers -----------------------------------------------------------
-        String last_weight = String.valueOf(dataPoints.get(dataPoints.size() - 1).getY());
-
         newWeightNumberPicker = findViewById(R.id.newWeightNumberPicker);
         newWeightNumberPicker.setMinValue(15);
         newWeightNumberPicker.setMaxValue(250);
@@ -146,11 +150,14 @@ public class RecordWeightActivity extends AppCompatActivity {
             height = height / 100;
 
             //Grab Last Recorded Weight
-            double weightKG = Float.parseFloat(String.valueOf(dataPoints.get(dataPoints.size() - 1).getY()));
+            double weightKG = Double.parseDouble(weightNumber + "." + weightDecimal);
+            double BMI = 0.000;
+            if (dataPoints != null) {
+                weightKG = Float.parseFloat(String.valueOf(dataPoints.get(dataPoints.size() - 1).getY()));
 
-            //Calculate BMI
-            double BMI = weightKG / (height * height) ;
-
+                //Calculate BMI
+                BMI = weightKG / (height * height);
+            }
             //Display BMI
             String bmiString = String.format(Locale.getDefault(),"Current BMI: %.3f", BMI);
             currentBMI.setText(bmiString);
