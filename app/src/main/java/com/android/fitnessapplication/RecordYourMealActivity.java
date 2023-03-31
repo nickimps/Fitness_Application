@@ -1,58 +1,39 @@
 package com.android.fitnessapplication;
-import android.view.View;
 import android.widget.Button;
-import android.widget.NumberPicker;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
-
-import com.google.android.material.textfield.TextInputEditText;
 
 public class RecordYourMealActivity extends AppCompatActivity {
 
-    private TextInputEditText getProteinPicker, getFatPicker, getCarbsPicker, getCaloriesPicker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_your_meal);
 
-//test
-        Intent mealIntent = getIntent();
-        Bundle extra = new Bundle();
-        String mealCal = mealIntent.getStringExtra("mealcalorie");
-        TextView cals = findViewById(R.id.recordCaloriesTextInputField);
-        String mealprotein = mealIntent.getStringExtra("mealprotein");
-        TextView protein = findViewById(R.id.recordProteinTextInputField);
-        String mealfat = mealIntent.getStringExtra("mealfat");
-        TextView fat = findViewById(R.id.recordFatsTextInputField);
-        String mealcarb = mealIntent.getStringExtra("mealcarbs");
-        TextView carb = findViewById(R.id.recordCarbsTextInputField);
-
-
+        // Pass text field inputs when the button is pressed
         Button recordMealButton = findViewById(R.id.recordYourMealButton);
-        //Making the functions of the save the meal below
-        recordMealButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View myView) {
-                String calsVar = String.valueOf(cals.getText());
-                String proVar = String.valueOf(protein.getText());
-                String fatVar = String.valueOf(fat.getText());
-                String carbVar = String.valueOf(carb.getText());
-                Intent intentMeal = new Intent(RecordYourMealActivity.this, CalorieCounterActivity.class);
-                System.out.println(calsVar + "bruh");
-                System.out.println(fatVar);
+        recordMealButton.setOnClickListener(myView -> {
+            TextView cals = findViewById(R.id.recordCaloriesTextInputField);
+            TextView protein = findViewById(R.id.recordProteinTextInputField);
+            TextView fat = findViewById(R.id.recordFatsTextInputField);
+            TextView carb = findViewById(R.id.recordCarbsTextInputField);
 
-                extra.putString("mealCal", calsVar);
-                extra.putString("mealprotein", proVar);
-                extra.putString("mealfat", fatVar);
-                extra.putString("mealcarb", carbVar);
-                intentMeal.putExtras(extra);
-                startActivity((intentMeal));
-            }
+            // Create the intent
+            Intent intentMeal = new Intent(RecordYourMealActivity.this, CalorieCounterActivity.class);
+            Bundle extra = new Bundle();
+
+            // Append the required information
+            extra.putString("mealCal", String.valueOf(cals.getText()));
+            extra.putString("mealprotein", String.valueOf(protein.getText()));
+            extra.putString("mealfat", String.valueOf(fat.getText()));
+            extra.putString("mealcarb", String.valueOf(carb.getText()));
+            intentMeal.putExtras(extra);
+
+            // Go back to calorie counter
+            startActivity(intentMeal);
+            finish();
         });
     }
 
