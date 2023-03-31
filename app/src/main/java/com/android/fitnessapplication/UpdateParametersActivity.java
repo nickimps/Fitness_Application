@@ -29,7 +29,9 @@ public class UpdateParametersActivity extends AppCompatActivity {
             myEdit.apply();
 
             // Go back to calorie counter
-            startActivity(new Intent(UpdateParametersActivity.this, CalorieCounterActivity.class));
+            Intent intent = new Intent(UpdateParametersActivity.this, CalorieCounterActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
             finish();
         });
 

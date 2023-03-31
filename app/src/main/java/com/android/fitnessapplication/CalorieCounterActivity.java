@@ -91,7 +91,11 @@ public class CalorieCounterActivity extends AppCompatActivity {
 
         // When button pressed, go to record your meal screen
         CardView recordMealCardView = findViewById(R.id.recordMealCardView);
-        recordMealCardView.setOnClickListener(view -> startActivity(new Intent(CalorieCounterActivity.this, RecordYourMealActivity.class)));
+        recordMealCardView.setOnClickListener(view -> {
+            Intent intent = new Intent(CalorieCounterActivity.this, RecordYourMealActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
 
         // When button pressed, go to update parameters screen
         CardView updateParamsCardView = findViewById(R.id.updateParamsCardView);

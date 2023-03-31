@@ -32,6 +32,7 @@ public class RecordYourMealActivity extends AppCompatActivity {
             intentMeal.putExtras(extra);
 
             // Go back to calorie counter
+            intentMeal.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intentMeal);
             finish();
         });
